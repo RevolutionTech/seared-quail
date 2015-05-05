@@ -1,6 +1,10 @@
 """
 Django settings for seared_quail project.
+:Created: 4 May 2015
+:Author: Lucas Connors
+
 """
+
 import os
 
 import seared_quail.settings_secret as secret
@@ -21,6 +25,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'menu',
+    'order',
+    'restaurant',
 )
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
