@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Seared Quail{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<h1 class="text-center">Menu</h1>
+
+<!-- Menu -->
+{% for category in menu %}
+    <h2>{{ category.name }}</h2>
+    <ul class="small-block-grid-1 large-block-grid-3">
+    {% for menuitem in category.menuitems %}
+        {% include "includes/menuitem.html" %}
+    {% endfor %}
+    </ul>
+{% endfor %}
+
+<!-- Place Order Button -->
+<br>
+<p>
+    <button type="button" class="expand">Place Order</button>
+</p>
+{% endblock %}

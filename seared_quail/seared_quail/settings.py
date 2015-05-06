@@ -10,6 +10,7 @@ import os
 import seared_quail.settings_secret as secret
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+TOP_DIR = os.path.dirname(BASE_DIR)
 SECRET_KEY = secret.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -61,5 +62,11 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
+# Templates and static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(TOP_DIR, 'static'),
+)
+TEMPLATE_DIRS = (
+    os.path.join(TOP_DIR, 'templates'),
+)

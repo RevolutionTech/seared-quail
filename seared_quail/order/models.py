@@ -23,7 +23,8 @@ class OrderMenuItem(models.Model):
 
     order = models.ForeignKey(Order)
     menuitem = models.ForeignKey(MenuItem)
-    note = models.TextField()
+    quantity = models.PositiveSmallIntegerField(default=1)
+    note = models.TextField(null=True, blank=True)
 
     def __unicode__(self):
         return "{menuitem} from order {order}".format(menuitem=self.menuitem, order=self.order)
