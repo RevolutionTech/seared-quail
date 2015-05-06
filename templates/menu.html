@@ -3,6 +3,8 @@
 
 {% block title %}Seared Quail{% endblock %}
 
+{% block javascript %}{% static "js/menu.js" %}{% endblock %}
+
 {% block content %}
 <!-- Header -->
 <h1 class="text-center">Menu</h1>
@@ -20,6 +22,6 @@
 <!-- Place Order Button -->
 <br>
 <p>
-    <button type="button" class="expand">Place Order</button>
+    <button type="button" class="button expand placeorder" disabled>Place Order</button>
 </p>
 {% endblock %}

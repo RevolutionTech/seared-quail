@@ -1,10 +1,10 @@
 <li>
-    <h4>{{ menuitem.name }}</h4>
+    <h4 class="name" id="{{ menuitem.id }}">{{ menuitem.name }}</h4>
     <div class="button-bar">
         <ul class="button-group round">
-            <li><a href="#" class="tiny button">-</a></li>
-            <large align="center" style="min-width: 50px;"><h5>0</h5></large>
-            <li><a href="#" class="tiny button">+</a></li>
+            <li><button class="button tiny minus" id="{{ menuitem.id }}">-</button></li>
+            <h5 align="center" style="min-width: 50px;" class="quantity" id="{{ menuitem.id }}">0</h5>
+            <li><button class="button tiny plus" id="{{ menuitem.id }}">+</button></li>
         </ul>
     </div>
     {{ menuitem.description }}
