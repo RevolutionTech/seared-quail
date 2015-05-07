@@ -19,6 +19,19 @@
     </ul>
 {% endfor %}
 
+<!-- Select Table -->
+<div class="row">
+    <div class="small-1 large-1 columns"><h5>Table:</h5></div>
+    <div class="small-11 large-3 columns end">
+        <select class="table">
+            <option value="0" selected>--</option>
+            {% for table in tables %}
+            <option value="{{ table.id }}">{{ table.number }}</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
+
 <!-- Place Order Button -->
 <br>
 <p>

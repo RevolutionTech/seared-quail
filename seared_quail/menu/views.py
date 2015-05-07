@@ -7,6 +7,7 @@
 from django.views.generic import TemplateView
 
 from menu.models import Category
+from restaurant.models import Table
 
 
 class MenuView(TemplateView):
@@ -25,5 +26,6 @@ class MenuView(TemplateView):
                     'menuitems': category.menuitem_set.all(),
                 })
         context['menu'] = menu
+        context['tables'] = Table.objects.all()
 
         return context
