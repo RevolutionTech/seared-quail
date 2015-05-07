@@ -33,6 +33,7 @@ $(document).ready(function() {
     $( '.button.plus' ).click(function() {
         var quantity = parseInt($( '#' + this.id + '.quantity' ).html());
         quantity += 1;
+        $( '#' + this.id + '.hidden-quantity' ).val(quantity);
         $( '#' + this.id + '.quantity' ).html(quantity);
         if (quantity == 1) update_order_button_status(); // may have changed from disabled -> enabled
     });
@@ -40,6 +41,7 @@ $(document).ready(function() {
         var quantity = parseInt($( '#' + this.id + '.quantity' ).html());
         if ( quantity > 0 ){
             quantity -= 1;
+            $( '#' + this.id + '.hidden-quantity' ).val(quantity);
         }
         $( '#' + this.id + '.quantity' ).html(quantity);
         if (quantity == 0) update_order_button_status(); // may have changed from enabled -> disabled
@@ -78,8 +80,7 @@ $(document).ready(function() {
         var r = confirm(ordertext);
         if (r == true){
             // Place Order
-            // ...
-            console.log("Order placed.");
+            $( '.orderform' ).submit();
         }
     });
 });

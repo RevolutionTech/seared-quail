@@ -2,9 +2,10 @@
     <h4 class="name" id="{{ menuitem.id }}">{{ menuitem.name }}</h4>
     <div class="button-bar">
         <ul class="button-group round">
-            <li><button class="button tiny minus" id="{{ menuitem.id }}">-</button></li>
+            <li><button type="button" class="button tiny minus" id="{{ menuitem.id }}">-</button></li>
             <h5 align="center" style="min-width: 50px;" class="quantity" id="{{ menuitem.id }}">0</h5>
-            <li><button class="button tiny plus" id="{{ menuitem.id }}">+</button></li>
+            <input type="hidden" class="hidden-quantity" id="{{ menuitem.id }}" name="quantity-{{ menuitem.id }}" value="0">
+            <li><button type="button" class="button tiny plus" id="{{ menuitem.id }}">+</button></li>
         </ul>
     </div>
     {{ menuitem.description }}

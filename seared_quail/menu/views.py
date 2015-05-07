@@ -4,15 +4,24 @@
 
 """
 
-from django.views.generic import TemplateView
+from django.core.urlresolvers import reverse
+from django.views.generic.edit import FormView
+
 
 from menu.models import Category
+from menu.forms import MenuForm
+from order.models import Order, OrderMenuItem
 from restaurant.models import Table
 
 
-class MenuView(TemplateView):
+class MenuView(FormView):
 
     template_name = 'menu.html'
+    form_class = MenuForm
+
+    def dispatch(self, request):
+        self.success_url = reverse('menu')
+        return super(MenuView, self).dispatch(request)
 
     def get_context_data(self, **kwargs):
         context = super(MenuView, self).get_context_data(**kwargs)
@@ -29,3 +38,17 @@ class MenuView(TemplateView):
         context['tables'] = Table.objects.all()
 
         return context
+
+    def form_valid(self, form):
+        d = form.cleaned_data
+
+        # Place the order
+        order = Order.objects.create(table=d['table'])
+        for menuitem in d['menuitems']:
+            OrderMenuItem.objects.create(
+                order=order,
+                menuitem=menuitem['menuitem'],
+                quantity=menuitem['quantity']
+            )
+
+        return super(MenuView, self).form_valid(form)
