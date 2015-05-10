@@ -7,7 +7,7 @@
 
 {% block content %}
 {% for order in orders %}
-    <div class="panel">
+    <div class="panel" id="{{ order.id }}">
         <h4>Table: {{ order.table }}</h4>
         <ul>
         {% for ordermenuitem in order.ordermenuitem_set.all %}
@@ -19,7 +19,7 @@
             {% endif %}
         {% endfor %}
         </ul>
-        <a href="#" class="button small success">Done</a>
+        <a href="#" class="button small success" id="{{ order.id }}">Done</a>
     </div>
 {% empty %}
 <h2 style="text-align: center; margin-top: 40px;">You're caught up with all of the incoming orders!

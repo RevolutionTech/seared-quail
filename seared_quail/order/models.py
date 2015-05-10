@@ -14,6 +14,7 @@ class Order(models.Model):
 
     table = models.ForeignKey(Table)
     created = models.DateTimeField(auto_now_add=True)
+    completed = models.DateTimeField(null=True, blank=True)
 
     def __unicode__(self):
         return "Order from table {table}".format(table=self.table)
@@ -27,4 +28,4 @@ class OrderMenuItem(models.Model):
     note = models.TextField(null=True, blank=True)
 
     def __unicode__(self):
-        return "{menuitem} from order {order}".format(menuitem=self.menuitem, order=self.order)
+        return "{menuitem} from {order}".format(menuitem=self.menuitem, order=self.order)
