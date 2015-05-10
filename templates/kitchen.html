@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Seared Quail{% endblock %}
+
+{% block javascript %}{% static "js/kitchen.js" %}{% endblock %}
+
+{% block content %}
+{% for order in orders %}
+    <div class="panel">
+        <h4>Table: {{ order.table }}</h4>
+        <ul>
+        {% for ordermenuitem in order.ordermenuitem_set.all %}
+            <li>{{ ordermenuitem.quantity }} {{ ordermenuitem.menuitem }}</li>
+            {% if ordermenuitem.note %}
+                <ul style="margin-bottom: 0;">
+                    <small style="font-size: 10pt;"><li>{{ ordermenuitem.note }}</li></small>
+                </ul>
+            {% endif %}
+        {% endfor %}
+        </ul>
+        <a href="#" class="button small success">Done</a>
+    </div>
+{% empty %}
+<h2 style="text-align: center; margin-top: 40px;">You're caught up with all of the incoming orders!
+<br /><br />Yipee!</h2>
+{% endfor %}
+{% endblock %}
