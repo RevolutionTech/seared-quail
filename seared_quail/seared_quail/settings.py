@@ -70,3 +70,6 @@ STATICFILES_DIRS = (
 TEMPLATE_DIRS = (
     os.path.join(TOP_DIR, 'templates'),
 )
+
+# Authentication
+LOGIN_URL = '/login/'

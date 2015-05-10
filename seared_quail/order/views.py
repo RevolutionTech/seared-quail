@@ -5,12 +5,58 @@
 """
 
 import datetime
+import functools
 
-from django.http import HttpResponse
+from django.contrib.auth import authenticate, login as auth_login, \
+    logout as auth_logout
+from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView
+from django.views.generic.edit import FormView
 
-from order.forms import OrderCompleteForm
+from order.forms import LoginForm, OrderCompleteForm
 from order.models import Order
+
+
+def redirect_authenticated(func):
+    """ If the user is already authenticated, redirect to kitchen """
+
+    @functools.wraps(func)
+    def wrapper(request, *args, **kwargs):
+        if request.user.is_authenticated():
+            return HttpResponseRedirect(reverse('kitchen'))
+        return func(request, *args, **kwargs)
+
+    return wrapper
+
+
+def logout(request):
+    auth_logout(request)
+    return HttpResponseRedirect(reverse('login'))
+
+
+class LoginView(FormView):
+
+    template_name = 'login.html'
+    form_class = LoginForm
+
+    def dispatch(self, request):
+        self.success_url = request.GET.get('next', reverse('kitchen'))
+        return super(LoginView, self).dispatch(request)
+
+    def get_context_data(self, **kwargs):
+        context = super(LoginView, self).get_context_data(**kwargs)
+        context['redirect_url'] = self.success_url
+        return context
+
+    def form_valid(self, form):
+        d = form.cleaned_data
+        username, password = d['username'], d['password']
+        user = authenticate(username=username, password=password)
+        if user:
+            auth_login(self.request, user)
+            return super(LoginView, self).form_valid(form)
 
 
 class KitchenView(TemplateView):
@@ -23,6 +69,7 @@ class KitchenView(TemplateView):
         return context
 
 
+@login_required
 def complete_order(request):
     form = OrderCompleteForm(request.POST)
     if form.is_valid():
