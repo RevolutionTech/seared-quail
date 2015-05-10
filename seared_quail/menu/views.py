@@ -20,7 +20,7 @@ class MenuView(FormView):
     form_class = MenuForm
 
     def dispatch(self, request):
-        self.success_url = reverse('menu')
+        self.success_url = reverse('menu') + '?success=1'
         return super(MenuView, self).dispatch(request)
 
     def get_context_data(self, **kwargs):
@@ -36,6 +36,8 @@ class MenuView(FormView):
                 })
         context['menu'] = menu
         context['tables'] = Table.objects.all()
+        if self.request.GET.get('success', False):
+            context['success'] = True
 
         return context
 

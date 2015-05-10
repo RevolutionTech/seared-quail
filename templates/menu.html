@@ -9,6 +9,13 @@
 <!-- Header -->
 <h1 class="text-center">Menu</h1>
 
+{% if success %}
+    <div data-alert class="alert-box success">
+        Your order has been placed.
+        <a href="#" class="close">&times;</a>
+    </div>
+{% endif %}
+
 <form method="post" class="orderform">
     {% csrf_token %}
     <!-- Menu -->

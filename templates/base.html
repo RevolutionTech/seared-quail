@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="{% static "css/foundation.min.css" %}" type="text/css" charset="utf-8" />
         <script type="text/javascript" src="{% static "js/jquery.min.js" %}"></script>
+        <script type="text/javascript" src="{% static "js/modernizr.js" %}"></script>
         <script type="text/javascript" src="{% static "js/foundation.min.js" %}"></script>
         {% block jsincludes %}{% endblock %}
         <script type="text/javascript">{% block jsvariables %}{% endblock %}</script>
@@ -16,5 +17,6 @@
             {% block content %}
             {% endblock %}
         </div>
+        <script type="text/javascript">$(document).foundation();</script>
     </body>
 </html>

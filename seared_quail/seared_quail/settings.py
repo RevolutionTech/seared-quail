@@ -46,7 +46,7 @@ WSGI_APPLICATION = 'seared_quail.wsgi.application'
 # Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', 
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'seared_quail',
         'USER': secret.DATABASE_USER,
         'PASSWORD': secret.DATABASE_PASSWORD,
