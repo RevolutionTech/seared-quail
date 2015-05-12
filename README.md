@@ -3,9 +3,10 @@
 
 ### Prerequisites
 
-Seared Quail requires [MySQL](http://www.mysql.com/), which you can install on debian with:
+Seared Quail requires [MySQL](http://www.mysql.com/) and python-dev, which you can install on debian with:
 
     sudo apt-get -y install mysql-server mysql-client libmysqlclient-dev
+    sudo apt-get install python-dev
 
 Remember the database credentials, because we will need them later in the setup.
 
