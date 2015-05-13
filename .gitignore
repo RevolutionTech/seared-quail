@@ -1,3 +1,7 @@
+# User data #
+#############
+media/
+
 # Compiled source #
 ###################
 *.pyc

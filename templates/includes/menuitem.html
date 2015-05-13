@@ -1,5 +1,8 @@
 <li>
     <h4 class="name" id="{{ menuitem.id }}">{{ menuitem.name }}</h4>
+    {% if menuitem.img %}
+        <a class="th [radius]" style="margin-bottom: 5px;" href="{{ menuitem.img.url }}"><img style="display: block; max-width: 150px; max-height: 100px; width: auto; height: auto;" src="{{ menuitem.img.url }}" /></a>
+    {% endif %}
     <div class="button-bar">
         <ul class="button-group round">
             <li><button type="button" class="button tiny minus" id="{{ menuitem.id }}">-</button></li>

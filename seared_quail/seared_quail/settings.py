@@ -63,6 +63,8 @@ USE_L10N = True
 USE_TZ = True
 
 # Templates and static files (CSS, JavaScript, Images)
+MEDIA_ROOT = os.path.join(TOP_DIR, 'media')
+MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(TOP_DIR, 'static'),

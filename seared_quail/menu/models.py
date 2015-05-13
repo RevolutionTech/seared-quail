@@ -20,6 +20,7 @@ class MenuItem(models.Model):
 
     category = models.ForeignKey(Category)
     name = models.CharField(max_length=30)
+    img = models.ImageField(upload_to="img/menuitem", null=True, blank=True, verbose_name='Image')
     description = models.TextField(null=True, blank=True)
 
     def __unicode__(self):
