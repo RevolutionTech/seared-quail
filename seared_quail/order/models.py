@@ -19,6 +19,13 @@ class Order(models.Model):
     def __unicode__(self):
         return "Order from table {table}".format(table=self.table)
 
+    def encodeJSON(self):
+        return {
+            'id': self.id,
+            'table': self.table.number,
+            'items': [ordermenuitem.encodeJSON() for ordermenuitem in self.ordermenuitem_set.all()],
+        }
+
 
 class OrderMenuItem(models.Model):
 
@@ -29,3 +36,10 @@ class OrderMenuItem(models.Model):
 
     def __unicode__(self):
         return "{menuitem} from {order}".format(menuitem=self.menuitem, order=self.order)
+
+    def encodeJSON(self):
+        return {
+            'quantity': self.quantity,
+            'name': self.menuitem.name,
+            'note': self.note,
+        }

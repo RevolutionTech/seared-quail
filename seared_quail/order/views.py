@@ -6,6 +6,7 @@
 
 import datetime
 import functools
+import json
 
 from django.contrib.auth import authenticate, login as auth_login, \
     logout as auth_logout
@@ -17,6 +18,10 @@ from django.views.generic.edit import FormView
 
 from order.forms import LoginForm, OrderCompleteForm
 from order.models import Order
+
+
+def JSONResponse(obj):
+    return HttpResponse(json.dumps(obj, indent=2), content_type="application/json")
 
 
 def redirect_authenticated(func):
@@ -65,8 +70,15 @@ class KitchenView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(KitchenView, self).get_context_data(**kwargs)
-        context['orders'] = Order.objects.filter(completed__isnull=True).order_by('id')
+        context['orders'] = [order.encodeJSON() for order in Order.objects.filter(completed__isnull=True).order_by('id')]
         return context
+
+
+@login_required
+def update_orders(request):
+    last_order_id = request.GET.get('lastorder', 0)
+    new_orders = Order.objects.filter(id__gt=last_order_id, completed__isnull=True)
+    return JSONResponse([order.encodeJSON() for order in new_orders])
 
 
 @login_required

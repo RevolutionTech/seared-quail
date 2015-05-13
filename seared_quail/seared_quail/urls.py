@@ -9,7 +9,7 @@ from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 
 from menu.views import MenuView
-from order.views import redirect_authenticated, LoginView, logout, KitchenView, complete_order
+from order.views import redirect_authenticated, LoginView, logout, KitchenView, update_orders, complete_order
 
 
 urlpatterns = patterns('',
@@ -20,5 +20,6 @@ urlpatterns = patterns('',
     url(r'^login/?$', redirect_authenticated(LoginView.as_view()), name='login'),
     url(r'^logout/?$', logout, name='logout'),
     url(r'^kitchen/?$', login_required(KitchenView.as_view()), name='kitchen'),
+    url(r'^kitchen/update/?$', update_orders, name='update_orders'),
     url(r'^kitchen/completeorder/?$', complete_order, name='complete_order'),
 )
