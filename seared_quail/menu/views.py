@@ -50,7 +50,8 @@ class MenuView(FormView):
             OrderMenuItem.objects.create(
                 order=order,
                 menuitem=menuitem['menuitem'],
-                quantity=menuitem['quantity']
+                quantity=menuitem['quantity'],
+                note=menuitem['note']
             )
 
         return super(MenuView, self).form_valid(form)

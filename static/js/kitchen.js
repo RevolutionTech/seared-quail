@@ -56,6 +56,7 @@ $(document).ready(function() {
                 var itemlist = "";
                 $.each(this['items'], function() {
                     itemlist += "<li>" + this['quantity'] + " " + this['name'] + "</li>";
+                    if (this['note']) itemlist += "<ul class=\"item-note\"><small><li>" + this['note'] + "</li></small></ul>";
                 });
                 $('.orders').append(
                     "<div class=\"panel\" id=\"" + this['id'] + "\"><h4>Table: " + this['table'] +

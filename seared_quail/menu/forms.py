@@ -18,6 +18,7 @@ class MenuForm(forms.Form):
         # Create a field for each menu item
         for menuitem in MenuItem.objects.all():
             self.fields['quantity-{id_}'.format(id_=menuitem.id)] = forms.IntegerField(min_value=0)
+            self.fields['note-{id_}'.format(id_=menuitem.id)] = forms.CharField(required=False)
 
     table = forms.IntegerField()
 
@@ -35,14 +36,16 @@ class MenuForm(forms.Form):
         if not self.errors:
             # Collapse menu items into single key
             menuitems = []
-            for label, quantity in cleaned_data.items():
+            for label, value in cleaned_data.items():
                 if label.startswith('quantity-'):
-                    if quantity > 0:
+                    if value > 0:
                         menuitemid = int(label.split('-')[1])
                         menuitem = MenuItem.objects.get(id=menuitemid)
+                        note = cleaned_data['note-{id_}'.format(id_=menuitemid)]
                         menuitems.append({
                             'menuitem': menuitem,
-                            'quantity': quantity,
+                            'quantity': value,
+                            'note': note,
                         })
                     del cleaned_data[label]
             cleaned_data['menuitems'] = menuitems

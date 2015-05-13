@@ -1,0 +1,6 @@
+.item-note {
+    margin-bottom: 0;
+}
+.item-note > small {
+    font-size: 10pt;
+}

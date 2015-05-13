@@ -3,6 +3,7 @@
 
 {% block title %}Seared Quail{% endblock %}
 
+{% block css %}{% static "css/kitchen.css" %}{% endblock %}
 {% block javascript %}{% static "js/kitchen.js" %}{% endblock %}
 
 {% block content %}
@@ -18,8 +19,8 @@
         {% for item in order.items %}
             <li>{{ item.quantity }} {{ item.name }}</li>
             {% if item.note %}
-                <ul style="margin-bottom: 0;">
-                    <small style="font-size: 10pt;"><li>{{ item.note }}</li></small>
+                <ul class="item-note">
+                    <small><li>{{ item.note }}</li></small>
                 </ul>
             {% endif %}
         {% endfor %}
