@@ -32,7 +32,7 @@ class MenuView(FormView):
                 menu.append({
                     'name': category.name,
                     'description': category.description,
-                    'menuitems': category.menuitem_set.all(),
+                    'menuitems': category.menuitem_set.filter(enabled=True),
                 })
         context['menu'] = menu
         context['tables'] = Table.objects.all()

@@ -15,6 +15,12 @@
         <a href="#" class="close">&times;</a>
     </div>
 {% endif %}
+{% if form.errors %}
+    <div data-alert class="alert-box alert">
+        An error occurred: {{ form.errors }}
+        <a href="#" class="close">&times;</a>
+    </div>
+{% endif %}
 
 <form method="post" class="orderform">
     {% csrf_token %}

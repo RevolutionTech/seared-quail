@@ -22,6 +22,7 @@ class MenuItem(models.Model):
     name = models.CharField(max_length=30)
     img = models.ImageField(upload_to="img/menuitem", null=True, blank=True, verbose_name='Image')
     description = models.TextField(null=True, blank=True)
+    enabled = models.BooleanField(default=True)
 
     def __unicode__(self):
         return self.name

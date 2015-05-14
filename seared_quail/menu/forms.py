@@ -16,7 +16,7 @@ class MenuForm(forms.Form):
         super(MenuForm, self).__init__(*args, **kwargs)
 
         # Create a field for each menu item
-        for menuitem in MenuItem.objects.all():
+        for menuitem in MenuItem.objects.filter(enabled=True):
             self.fields['quantity-{id_}'.format(id_=menuitem.id)] = forms.IntegerField(min_value=0)
             self.fields['note-{id_}'.format(id_=menuitem.id)] = forms.CharField(required=False)
 
@@ -30,10 +30,21 @@ class MenuForm(forms.Form):
             raise forms.ValidationError("Given table does not exist.")
         return table
 
+    def check_leftover_menuitems(self, cleaned_data):
+        leftover_menuitems = set(self.data.keys()) - set(cleaned_data.keys())
+        for label in leftover_menuitems:
+            if label.startswith('quantity-'):
+                menuitemid = int(label.split('-')[1])
+                menuitem = MenuItem.objects.get(id=menuitemid)
+                raise forms.ValidationError("The item {item_name} is no longer available. Please make a different order.".format(item_name=menuitem.name))
+
     def clean(self):
         cleaned_data = super(MenuForm, self).clean()
 
         if not self.errors:
+            # Check for menu items that have been removed since the form was loaded
+            self.check_leftover_menuitems(cleaned_data)
+
             # Collapse menu items into single key
             menuitems = []
             for label, value in cleaned_data.items():
