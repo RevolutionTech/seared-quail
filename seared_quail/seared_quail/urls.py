@@ -9,12 +9,18 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from django.views.static import serve
+from socketio import sdjango
 
 from menu.views import MenuView
 from order.views import redirect_authenticated, LoginView, logout, KitchenView, update_orders, complete_order
 
 
+sdjango.autodiscover()
+
+
 urlpatterns = patterns('',
+    url(r'^socket\.io', include(sdjango.urls)),
+
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^$', MenuView.as_view(), name='menu'),

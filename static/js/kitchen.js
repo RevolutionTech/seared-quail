@@ -15,28 +15,48 @@ $(document).ready(function() {
         }
     });
 
+    // Socket.io
+    var socket = io.connect( "/kitchen" );
+    socket.on( 'update', function () {
+        update_orders();
+    });
+    socket.on( 'connect', function () {
+        console.log('Connected!');
+    });
+    socket.on( 'reconnect', function () {
+        console.log('Reconnected!');
+    });
+    socket.on( 'reconnecting', function () {
+        console.log('Attempting to reconnect to the server...');
+    });
+    socket.on( 'error', function (e) {
+        console.log(e ? e : 'An unknown error occurred.');
+    });
+
     // Show "caught up" text if there are no incoming orders
     function check_caught_up() {
         if ($('.panel').length == 0) $('.caught-up').show();
     }
 
     // Click "Done" button
-    $('.panel > .button').click(function() {
-        var orderid = this.id;
+    function define_done_btn() {
+        $('.panel > .button').click(function() {
+            var orderid = this.id;
 
-        // Mark order as complete
-        jQuery.post("/kitchen/completeorder", { order: orderid }, function() {
-            // Remove order
-            $.when($('#' + orderid + '.panel').fadeOut())
-                .done(function() {
-                    // Remove panel
-                    $('#' + orderid + '.panel').remove();
+            // Mark order as complete
+            jQuery.post("/kitchen/completeorder", { order: orderid }, function() {
+                // Remove order
+                $.when($('#' + orderid + '.panel').fadeOut())
+                    .done(function() {
+                        // Remove panel
+                        $('#' + orderid + '.panel').remove();
 
-                    // Check if empty
-                    check_caught_up();
-                });
+                        // Check if empty
+                        check_caught_up();
+                    });
+            });
         });
-    });
+    }
 
     // Get new orders
     function update_orders() {
@@ -64,10 +84,11 @@ $(document).ready(function() {
                     "<a href=\"#\" class=\"button small success\" id=\"" + this['id'] + "\">Done</a></div>"
                 )
             });
+
+            // Redefine "Done" button
+            define_done_btn();
         });
     }
 
-    setInterval(function(){
-        update_orders();
-    }, 10000);
+    define_done_btn();
 });

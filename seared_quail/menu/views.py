@@ -11,6 +11,7 @@ from django.views.generic.edit import FormView
 from menu.models import Category
 from menu.forms import MenuForm
 from order.models import Order, OrderMenuItem
+from order.sockets import _connections
 from restaurant.models import Table
 
 
@@ -53,5 +54,9 @@ class MenuView(FormView):
                 quantity=menuitem['quantity'],
                 note=menuitem['note']
             )
+
+        # Notify kitchen(s)
+        for connection_id, connection in _connections.iteritems():
+            connection.emit('update')
 
         return super(MenuView, self).form_valid(form)
