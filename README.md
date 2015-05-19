@@ -3,12 +3,9 @@
 
 ### Prerequisites
 
-Seared Quail requires [MySQL](http://www.mysql.com/) and python-dev, which you can install on debian with:
+Seared Quail requires [PostgreSQL](http://www.postgresql.org/), which you can install on debian with:
 
-    sudo apt-get -y install mysql-server mysql-client libmysqlclient-dev
-    sudo apt-get install python-dev
-
-Remember the database credentials, because we will need them later in the setup.
+    sudo apt-get install postgresql postgresql-contrib libpq-dev python-dev
 
 I recommend using a virtual environment for Seared Quail. If you don't have it already, you can install [virtualenv](http://virtualenv.readthedocs.org/en/latest/virtualenv.html) and virtualenvwrapper globally with pip:
 
@@ -24,7 +21,7 @@ In the future you can reactivate the virtual environment with:
 
 ### Installation
 
-Then in your virtual environment, you will need to install Python dependencies such as psycopg2, MySQL-python, [django](https://www.djangoproject.com/), and [pillow](https://pillow.readthedocs.org/). You can do this simply with the command:
+Then in your virtual environment, you will need to install Python dependencies such as [gevent](http://www.gevent.org/), psycopg2, psycogreen, [Gunicorn](http://gunicorn.org/), [django](https://www.djangoproject.com/), and [pillow](https://pillow.readthedocs.org/). You can do this simply with the command:
 
     pip install -r requirements.txt
 
@@ -33,13 +30,62 @@ Then in your virtual environment, you will need to install Python dependencies s
 Next we will need to create a file in the same directory as `settings.py` called `settings_secret.py`. This is where we will store all of the settings that are specific to your instance of Seared Quail. Most of these settings should be only known to you. Your file should define a secret key, and the database credentials. Your `settings_secret.py` file might look something like:
 
     SECRET_KEY = '-3f5yh&(s5%9uigtx^yn=t_woj0@90__fr!t2b*96f5xoyzb%b'
-    DATABASE_USER = 'root'
+    DATABASE_USER = 'postgres'
     DATABASE_PASSWORD = 'abc123'
     DATABASE_HOST = 'localhost'
-    DATABASE_PORT = '3306'
+    DATABASE_PORT = '5432'
 
 Of course you should [generate your own secret key](http://stackoverflow.com/a/16630719) and use a more secure password for your database.
 
 With everything installed and all files in place, you may now create the database tables. You can do this with:
 
     python manage.py migrate
+
+### Deployment
+
+Since Seared Quail uses websockets, Apache with mod_wsgi is not a valid production setup. Instead, we will use Gunicorn with [Nginx](http://nginx.org/). You can install Nginx with the following:
+
+    sudo apt-get install nginx
+
+Then we need to create the Nginx configuration for Seared Quail:
+
+    cd /etc/nginx/sites-available
+    sudo nano mydomain.com
+
+And in this file, generate a configuration similar to the following:
+
+    server {
+        server_name mydomain.com;
+
+        access_log off;
+
+        location /static/admin/ {
+            alias /home/lucas/.virtualenvs/seared-quail/lib/python2.7/site-packages/django/contrib/admin/static/admin/;
+        }
+        location /static/ {
+            alias /home/lucas/seared-quail/static/;
+        }
+        location /media/ {
+            alias /home/lucas/seared-quail/media/;
+        }
+
+        location /socket.io {
+            proxy_pass http://127.0.0.1:8000/socket.io;
+            proxy_redirect off;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
+        }
+
+        location / {
+            proxy_pass http://127.0.0.1:8000;
+            proxy_set_header X-Forwarded-Host $server_name;
+            proxy_set_header X-Real-IP $remote_addr;
+            add_header P3P 'CP="ALL DSP COR PSAa PSDa OUR NOR ONL UNI COM NAV"';
+        }
+    }
+
+Save the file and link to it from sites-enabled:
+
+    cd ../sites-enabled
+    sudo ln -s ../sites-available/mydomain.com mydomain.com
