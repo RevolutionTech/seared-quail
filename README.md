@@ -43,9 +43,9 @@ With everything installed and all files in place, you may now create the databas
 
 ### Deployment
 
-Since Seared Quail uses websockets, Apache with mod_wsgi is not a valid production setup. Instead, we will use Gunicorn with [Nginx](http://nginx.org/). You can install Nginx with the following:
+Since Seared Quail uses websockets, Apache with mod_wsgi is not a valid production setup. Instead, we will use Gunicorn with [runit](http://smarden.org/runit/) and [Nginx](http://nginx.org/). You can install them with the following:
 
-    sudo apt-get install nginx
+    sudo apt-get install runit nginx
 
 Then we need to create the Nginx configuration for Seared Quail:
 
@@ -89,3 +89,31 @@ Save the file and link to it from sites-enabled:
 
     cd ../sites-enabled
     sudo ln -s ../sites-available/mydomain.com mydomain.com
+
+Then we need to create a script to run Seared Quail on boot with runit:
+
+    sudo mkdir /etc/sv/seared-quail
+    cd /etc/sv/seared-quail
+    sudo nano run
+
+In this file, create a script similar to the following:
+
+    #!/bin/sh
+
+    GUNICORN=/home/lucas/.virtualenvs/seared-quail/bin/gunicorn
+    ROOT=/home/lucas/seared-quail/seared_quail
+    PID=/var/run/gunicorn.pid
+
+    APP=seared_quail.wsgi:application
+
+    if [ -f $PID ]; then rm $PID; fi
+
+    cd $ROOT
+    exec $GUNICORN -c $ROOT/seared_quail/gunicorn.py --pid=$PID $APP
+
+Then change the permissions on the file to be executable and symlink the project to /etc/service:
+
+    sudo chmod u+x run
+    sudo ln -s /etc/sv/seared-quail /etc/service/seared-quail
+
+Seared Quail should now automatically be running on the local machine.
