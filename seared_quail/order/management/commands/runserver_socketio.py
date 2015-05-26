@@ -26,8 +26,11 @@ def reload_watcher():
 
 class Command(BaseCommand):
 
-    def handle(self, addrport="", *args, **options):
+    def add_arguments(self, parser):
+        parser.add_argument('addrport')
 
+    def handle(self, *args, **options):
+        addrport = options['addrport']
         if not addrport:
             self.addr = ''
             try:

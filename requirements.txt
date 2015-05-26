@@ -2,6 +2,6 @@ gevent
 psycopg2
 psycogreen
 gunicorn==0.16.1
-Django==1.7
+Django==1.8.2
 Pillow==2.8.1
 -e git://github.com/abourget/gevent-socketio.git@668d11edbd62052cde1583be1e1d0512c930f16d#egg=gevent_socketio-master
