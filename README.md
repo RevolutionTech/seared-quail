@@ -77,6 +77,10 @@ And in this file, generate a configuration similar to the following:
             proxy_set_header Connection "upgrade";
         }
 
+        location /favicon.ico {
+            alias /home/lucas/seared-quail/media/favicon.ico;
+        }
+
         location / {
             proxy_pass http://127.0.0.1:8000;
             proxy_set_header X-Forwarded-Host $server_name;
