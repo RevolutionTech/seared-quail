@@ -26,12 +26,7 @@
     {% csrf_token %}
     <!-- Menu -->
     {% for category in menu %}
-        <h2>{{ category.name }}</h2>
-        <ul class="small-block-grid-1 large-block-grid-3">
-        {% for menuitem in category.menuitems %}
-            {% include "includes/menuitem.html" %}
-        {% endfor %}
-        </ul>
+        {% include "includes/category.html" with headingsize=2 %}
     {% endfor %}
 
     <!-- Select Table -->

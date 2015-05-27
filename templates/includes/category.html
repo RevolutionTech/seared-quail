@@ -1,0 +1,9 @@
+<h{{ headingsize }}>{{ category.name }}</h{{ headingsize }}>
+<ul class="small-block-grid-1 large-block-grid-3">
+    {% for menuitem in category.menuitems %}
+        {% include "includes/menuitem.html" %}
+    {% endfor %}
+</ul>
+{% for subcategory in category.subcategories %}
+    {% include "includes/category.html" with category=subcategory headingsize=3 %}
+{% endfor %}

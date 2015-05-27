@@ -20,6 +20,28 @@ class MenuView(FormView):
     template_name = 'menu.html'
     form_class = MenuForm
 
+    @classmethod
+    def encode_category(cls, category):
+        encoded_category = {}
+
+        # Recursively get subcategories
+        subcategories = []
+        for subcategory in Category.objects.filter(parent=category):
+            encoded_subcategory = cls.encode_category(subcategory)
+            if encoded_subcategory:
+                subcategories.append(encoded_subcategory)
+        if subcategories:
+            encoded_category['subcategories'] = subcategories
+
+        # Encode this category
+        if category.menuitem_set.filter(enabled=True).exists():
+            encoded_category.update({
+                'name': category.name,
+                'description': category.description,
+                'menuitems': category.menuitem_set.filter(enabled=True).order_by('order'),
+            })
+        return encoded_category
+
     def dispatch(self, request):
         self.success_url = reverse('menu') + '?success=1'
         return super(MenuView, self).dispatch(request)
@@ -27,14 +49,13 @@ class MenuView(FormView):
     def get_context_data(self, **kwargs):
         context = super(MenuView, self).get_context_data(**kwargs)
 
+        # Collect menu items
         menu = []
-        for category in Category.objects.all():
-            if category.menuitem_set.exists():
-                menu.append({
-                    'name': category.name,
-                    'description': category.description,
-                    'menuitems': category.menuitem_set.filter(enabled=True).order_by('order'),
-                })
+        for category in Category.objects.filter(parent__isnull=True):
+            encoded_category = self.encode_category(category)
+            if encoded_category:
+                menu.append(encoded_category)
+
         context['menu'] = menu
         context['tables'] = Table.objects.all()
         if self.request.GET.get('success', False):
