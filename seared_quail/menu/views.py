@@ -51,7 +51,7 @@ class MenuView(FormView):
 
         # Collect menu items
         menu = []
-        for category in Category.objects.filter(parent__isnull=True):
+        for category in Category.objects.filter(parent__isnull=True).order_by('order'):
             encoded_category = self.encode_category(category)
             if encoded_category:
                 menu.append(encoded_category)

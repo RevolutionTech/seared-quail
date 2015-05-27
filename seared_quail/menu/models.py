@@ -9,13 +9,15 @@ from django.db import models
 from ordered_model.models import OrderedModel
 
 
-class Category(models.Model):
+class Category(OrderedModel):
 
     name = models.CharField(max_length=30)
     parent = models.ForeignKey('self', null=True, blank=True)
     description = models.TextField(null=True, blank=True)
 
-    class Meta:
+    order_with_respect_to = 'parent'
+
+    class Meta(OrderedModel.Meta):
         verbose_name_plural = "Categories"
 
     def __unicode__(self):
