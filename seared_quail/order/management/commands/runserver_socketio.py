@@ -27,22 +27,25 @@ def reload_watcher():
 class Command(BaseCommand):
 
     def add_arguments(self, parser):
-        parser.add_argument('addrport')
+        try:
+            default_port = settings.SOCKETIO_PORT
+        except AttributeError:
+            default_port = DEFAULT_PORT
+
+        parser.add_argument(
+            'addrport',
+            nargs='?',
+            default="0.0.0.0:{port}".format(port=default_port),
+            help="Specify the address and port used by the SocketIOServer"
+        )
 
     def handle(self, *args, **options):
         addrport = options['addrport']
-        if not addrport:
-            self.addr = ''
-            try:
-                self.port = settings.SOCKETIO_PORT
-            except AttributeError:
-                self.port = DEFAULT_PORT
-        else:
-            m = match(naiveip_re, addrport)
-            if m is None:
-                raise CommandError("%s' is not a valid port number or address:port pair." % addrport)
+        m = match(naiveip_re, addrport)
+        if m is None:
+            raise CommandError("%s is not a valid port number or address:port pair." % addrport)
 
-            self.addr, _, _, _, self.port = m.groups()
+        self.addr, _, _, _, self.port = m.groups()
 
         # Make the port available allowing the port
         # to be set as the client-side default
