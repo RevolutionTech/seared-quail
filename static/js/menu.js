@@ -63,24 +63,31 @@ $(document).ready(function() {
             var quantity = parseInt($(this).html());
             if (quantity > 0){
                 var name = $( '#' + this.id + '.name' ).html();
+                var note = $( '#' + this.id + '.note' ).val();
                 var ordermenuitem = {
                     id: this.id,
                     name: name,
+                    note: note,
                     quantity: quantity,
                 };
                 order.push(ordermenuitem);
             }
-        })
+        });
+
 
         // Request confirmation
-        var ordertext = "Place this order for table " + table_name + "?\n";
-        jQuery.each(order, function() {
-            ordertext += this.quantity + " " + this.name + "\n";
-        })
-        var r = confirm(ordertext);
-        if (r == true){
-            // Place Order
-            $( '.orderform' ).submit();
-        }
+        $('.orderconfirm > h2').html("Confirm order for table " + table_name + "?");
+        var ordertext = "";
+        $.each(order, function() {
+            ordertext += "<li>" + this.quantity + " " + this.name + "</li>";
+            if (this.note) ordertext += "<ul><li>" + this.note + "</li></ul>";
+        });
+        $('.orderconfirm > ul').html(ordertext);
+        $('.orderconfirm').foundation('reveal', 'open');
+    });
+
+    // Place order on Confirm Order button press
+    $( '.orderconfirm > button' ).click(function() {
+        $( '.orderform' ).submit();
     });
 });

@@ -3,6 +3,7 @@
 
 {% block title %}Seared Quail{% endblock %}
 
+{% block css %}{% static "css/seared-quail.css" %}{% endblock %}
 {% block javascript %}{% static "js/menu.js" %}{% endblock %}
 
 {% block content %}
@@ -47,5 +48,13 @@
     <p>
         <button type="button" class="button expand placeorder" disabled>Place Order</button>
     </p>
+
+    <!-- Order Confirmation -->
+    <div class="orderconfirm reveal-modal" data-reveal aria-labelled-by="Confirm Order" aria-hidden="true" role="dialog">
+        <h2>Confirm Order</h2>
+        <ul></ul>
+        <button type="button" class="button">Confirm Order</button>
+        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
 </form>
 {% endblock %}

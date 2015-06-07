@@ -11,6 +11,6 @@
             <li><button type="button" class="button tiny plus" id="{{ menuitem.id }}">+</button></li>
         </ul>
     </div>
-    <input type="text" name="note-{{ menuitem.id }}" placeholder="note (optional)" />
+    <input class="note" id="{{ menuitem.id }}" type="text" name="note-{{ menuitem.id }}" placeholder="note (optional)" />
     {{ menuitem.description }}
 </li>
