@@ -47,6 +47,11 @@ $(document).ready(function() {
         if (quantity == 0) update_order_button_status(); // may have changed from enabled -> disabled
     });
 
+    // Read more if long description
+    $( '.menuitem-description' ).readmore({
+        collapsedHeight: 100
+    });
+
     // Select table
     $( '.table' ).change(function() {
         update_order_button_status();
