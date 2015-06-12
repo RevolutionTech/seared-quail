@@ -12,5 +12,5 @@
         </ul>
     </div>
     <input class="note" id="{{ menuitem.id }}" type="text" name="note-{{ menuitem.id }}" placeholder="note (optional)" />
-    <div class="menuitem-description">{{ menuitem.description }}</div>
+    <div class="menuitem-description">{{ menuitem.description|safe }}</div>
 </li>

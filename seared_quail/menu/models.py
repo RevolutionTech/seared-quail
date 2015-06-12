@@ -41,7 +41,7 @@ class MenuItem(OrderedModel):
     category = models.ForeignKey(Category)
     name = models.CharField(max_length=30)
     img = models.ImageField(upload_to="img/menuitem", null=True, blank=True, verbose_name='Image')
-    description = models.TextField(null=True, blank=True)
+    description = models.TextField(null=True, blank=True, help_text="Enter valid HTML")
     enabled = models.BooleanField(default=True)
 
     order_with_respect_to = 'category'
