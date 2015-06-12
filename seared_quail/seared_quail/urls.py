@@ -8,6 +8,7 @@ from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.views.static import serve
 from socketio import sdjango
 
@@ -23,7 +24,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^$', MenuView.as_view(), name='menu'),
+    url(r'^$', csrf_exempt(MenuView.as_view()), name='menu'),
 
     url(r'^login/?$', redirect_authenticated(LoginView.as_view()), name='login'),
     url(r'^logout/?$', logout, name='logout'),
