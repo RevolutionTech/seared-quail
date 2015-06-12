@@ -15,7 +15,7 @@ class CategoryAdmin(OrderedModelAdmin):
 
 
 class MenuItemAdmin(OrderedModelAdmin):
-    list_display = ('name', 'category', 'enabled', 'move_up_down_links',)
+    list_display = ('name', 'category', 'show_in_menu', 'user_can_order', 'move_up_down_links',)
 
 
 admin.site.register(Category, CategoryAdmin)

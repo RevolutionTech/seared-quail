@@ -34,11 +34,11 @@ class MenuView(FormView):
             encoded_category['subcategories'] = subcategories
 
         # Encode this category
-        if category.menuitem_set.filter(enabled=True).exists():
+        if category.menuitem_set.filter(show_in_menu=True).exists():
             encoded_category.update({
                 'name': category.name,
                 'description': category.description,
-                'menuitems': category.menuitem_set.filter(enabled=True).order_by('order'),
+                'menuitems': category.menuitem_set.filter(show_in_menu=True).order_by('order'),
             })
         return encoded_category
 

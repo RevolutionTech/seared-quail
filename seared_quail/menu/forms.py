@@ -16,7 +16,7 @@ class MenuForm(forms.Form):
         super(MenuForm, self).__init__(*args, **kwargs)
 
         # Create a field for each menu item
-        for menuitem in MenuItem.objects.filter(enabled=True):
+        for menuitem in MenuItem.objects.filter(user_can_order=True):
             self.fields['quantity-{id_}'.format(id_=menuitem.id)] = forms.IntegerField(min_value=0)
             self.fields['note-{id_}'.format(id_=menuitem.id)] = forms.CharField(required=False)
 
