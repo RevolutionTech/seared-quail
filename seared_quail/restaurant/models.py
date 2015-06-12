@@ -9,7 +9,7 @@ from django.db import models
 
 class Table(models.Model):
 
-    number = models.CharField(max_length=6)
+    number = models.CharField(max_length=60)
 
     def __unicode__(self):
         return self.number
