@@ -63,6 +63,11 @@ Then we need to create the Nginx configuration for Seared Quail:
 And in this file, generate a configuration similar to the following:
 
     server {
+        server_name www.mydomain.com;
+        return 301 http://mydomain.com$request_url;
+    }
+
+    server {
         server_name mydomain.com;
 
         access_log off;
