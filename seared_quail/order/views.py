@@ -70,7 +70,11 @@ class KitchenView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(KitchenView, self).get_context_data(**kwargs)
-        context['orders'] = [order.encodeJSON() for order in Order.objects.filter(completed__isnull=True).order_by('id')]
+        orders = Order.objects.all()
+        context['orders'] = {
+            'submitted': [order.encodeJSON() for order in orders.filter(completed__isnull=True).order_by('id')],
+            'completed': [order.encodeJSON() for order in orders.filter(completed__isnull=False).order_by('-id')],
+        }
         return context
 
 

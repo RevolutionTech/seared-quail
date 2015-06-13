@@ -10,26 +10,49 @@
 {% block javascript %}{% static "js/kitchen.js" %}{% endblock %}
 
 {% block content %}
-<h2 class="caught-up" style="text-align: center; margin-top: 40px;{% if orders %} display:none;{% endif %}">
+<h2 class="caught-up" style="text-align: center; margin-top: 40px;{% if orders.submitted %} display:none;{% endif %}">
     You're caught up with all of the incoming orders!
-    <br /><br />Yipee!
+    <br /><br />Yipee!<br /><br />
 </h2>
-<div class="orders">
-{% for order in orders %}
-    <div class="panel" id="{{ order.id }}">
-        <h4>Table: {{ order.table }}</h4>
-        <ul>
-        {% for item in order.items %}
-            <li>{{ item.quantity }} {{ item.name }}</li>
-            {% if item.note %}
-                <ul class="item-note">
-                    <small><li>{{ item.note }}</li></small>
-                </ul>
-            {% endif %}
-        {% endfor %}
-        </ul>
-        <a href="#" class="button small success" id="{{ order.id }}">Done</a>
+<ul class="tabs small-block-grid-2" data-tab>
+    <li class="tab-title active" style="text-align: center;"><a href="#orders-submitted">Submitted Orders</a></li>
+    <li class="tab-title" style="text-align: center;"><a href="#orders-completed">Completed Orders</a></li>
+</ul>
+<div class="tabs-content">
+    <div class="content active" id="orders-submitted">
+    {% for order in orders.submitted %}
+        <div class="panel" id="{{ order.id }}">
+            <h4>Table: {{ order.table }}</h4>
+            <ul>
+            {% for item in order.items %}
+                <li>{{ item.quantity }} {{ item.name }}</li>
+                {% if item.note %}
+                    <ul class="item-note">
+                        <small><li>{{ item.note }}</li></small>
+                    </ul>
+                {% endif %}
+            {% endfor %}
+            </ul>
+            <a href="#" class="button small success" id="{{ order.id }}">Done</a>
+        </div>
+    {% endfor %}
     </div>
-{% endfor %}
+    <div class="content" id="orders-completed">
+    {% for order in orders.completed %}
+        <div class="panel" id="{{ order.id }}">
+            <h4>Table: {{ order.table }}</h4>
+            <ul>
+            {% for item in order.items %}
+                <li>{{ item.quantity }} {{ item.name }}</li>
+                {% if item.note %}
+                    <ul class="item-note">
+                        <small><li>{{ item.note }}</li></small>
+                    </ul>
+                {% endif %}
+            {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+    </div>
 </div>
 {% endblock %}

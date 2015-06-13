@@ -35,7 +35,7 @@ $(document).ready(function() {
 
     // Show "caught up" text if there are no incoming orders
     function check_caught_up() {
-        if ($('.panel').length == 0) $('.caught-up').show();
+        if ($('#orders-submitted > .panel').length == 0) $('.caught-up').show();
     }
 
     // Click "Done" button
@@ -45,12 +45,15 @@ $(document).ready(function() {
 
             // Mark order as complete
             jQuery.post("/kitchen/completeorder", { order: orderid }, function() {
-                // Remove order
-                $.when($('#' + orderid + '.panel').fadeOut())
+                // Move panel over to completed tab
+                var submittedorder = $('#' + orderid + '.panel');
+                var completedorder = submittedorder.clone();
+                completedorder.find('.button').remove();
+                $('#orders-completed').prepend(completedorder);
+                $.when(submittedorder.fadeOut())
                     .done(function() {
                         // Remove panel
-                        $('#' + orderid + '.panel').remove();
-
+                        submittedorder.remove();
                         // Check if empty
                         check_caught_up();
                     });
@@ -62,8 +65,8 @@ $(document).ready(function() {
     function update_orders() {
         // Most recent order
         var lastorderid = 0; // Just provide 0 if we don't have any orders on the page
-        if ($('.panel').length > 0){
-            lastorderid = parseInt($('.panel').last()[0].id);
+        if ($('#orders-submitted > .panel').length > 0){
+            lastorderid = parseInt($('#orders-submitted > .panel').last().attr('id'));
         }
 
         // Get orders newer than what we have on the page
@@ -78,7 +81,7 @@ $(document).ready(function() {
                     itemlist += "<li>" + this['quantity'] + " " + this['name'] + "</li>";
                     if (this['note']) itemlist += "<ul class=\"item-note\"><small><li>" + this['note'] + "</li></small></ul>";
                 });
-                $('.orders').append(
+                $('#orders-submitted').append(
                     "<div class=\"panel\" id=\"" + this['id'] + "\"><h4>Table: " + this['table'] +
                     "</h4><ul>" + itemlist + "</ul>" +
                     "<a href=\"#\" class=\"button small success\" id=\"" + this['id'] + "\">Done</a></div>"
