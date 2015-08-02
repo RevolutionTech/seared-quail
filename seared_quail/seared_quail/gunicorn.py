@@ -1,4 +1,4 @@
-bind = '0.0.0.0:8000'
+bind = '0.0.0.0:8001'
 max_requests = 10000
 worker_class = 'socketio.sgunicorn.GeventSocketIOWorker'
 workers = 1

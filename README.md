@@ -86,7 +86,7 @@ And in this file, generate a configuration similar to the following:
         }
 
         location /socket.io {
-            proxy_pass http://127.0.0.1:8000/socket.io;
+            proxy_pass http://127.0.0.1:8001/socket.io;
             proxy_redirect off;
             proxy_http_version 1.1;
             proxy_set_header Upgrade $http_upgrade;
@@ -98,7 +98,7 @@ And in this file, generate a configuration similar to the following:
         }
 
         location / {
-            proxy_pass http://127.0.0.1:8000;
+            proxy_pass http://127.0.0.1:8001;
             proxy_set_header X-Forwarded-Host $server_name;
             proxy_set_header X-Real-IP $remote_addr;
             add_header P3P 'CP="ALL DSP COR PSAa PSDa OUR NOR ONL UNI COM NAV"';
