@@ -1,6 +1,10 @@
 # Seared Quail
 ### Created by: Lucas Connors
 
+![Seared Quail](http://revolutiontech.ca/media/img/searedquail1.png)
+
+***
+
 ## About
 
 Seared Quail is an open-source digital restaurant menu web application. Below are instructions for setup and deployment for which you can create your own Seared Quail instance in a restaurant setting. Once your instance is deployed you can customize the menu in the Django admin interface for your restaurant. You are also welcome to fork the project and make changes specific to your use case as per the license provided in this project.
