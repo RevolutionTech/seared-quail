@@ -18,4 +18,5 @@ Thumbs.db
 
 # Secure files #
 ################
-seared_quail/seared_quail/settings_secret.py
+seared_quail/seared_quail/settings/dev.py
+seared_quail/seared_quail/settings/prod.py
