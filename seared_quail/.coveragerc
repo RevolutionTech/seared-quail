@@ -1,8 +1,10 @@
 [run]
 source = ./
 
-# Omit files from coverage that only run on prod
 omit =
+    order/management/commands/runserver_socketio.py
+
+    # Omit files from coverage that only run on prod
     seared_quail/gunicorn.py
     seared_quail/settings/__init__.py
     seared_quail/wsgi.py
