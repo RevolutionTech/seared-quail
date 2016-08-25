@@ -19,3 +19,11 @@ class MenuAdminWebTestCase(SearedQuailTestCase):
             '/admin/menu/menuitem/add/',
             '/admin/menu/menuitem/{menu_item_id}/'.format(menu_item_id=self.menu_item.id),
         ]
+
+
+class MenuWebTestCase(SearedQuailTestCase):
+
+    def get200s(self):
+        return [
+            '/',
+        ]
