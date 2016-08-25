@@ -14,4 +14,7 @@ before_script:
 script:
   - cd seared_quail
   - python manage.py migrate
-  - python manage.py test
+  - coverage run ./manage.py test
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

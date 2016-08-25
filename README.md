@@ -1,6 +1,7 @@
 # Seared Quail
 
 [![Build Status](https://travis-ci.org/RevolutionTech/seared-quail.svg?branch=master)](https://travis-ci.org/RevolutionTech/seared-quail)
+[![codecov](https://codecov.io/gh/RevolutionTech/seared-quail/branch/master/graph/badge.svg)](https://codecov.io/gh/RevolutionTech/seared-quail)
 
 ![Seared Quail](http://revolutiontech.ca/media/img/searedquail1.png)
 
