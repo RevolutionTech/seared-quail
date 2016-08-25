@@ -7,6 +7,7 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
 
+from menu.models import Category, MenuItem
 from restaurant.models import Table
 
 
@@ -16,6 +17,8 @@ class SearedQuailTestCase(TestCase):
     USER_EMAIL = 'jsmith@example.com'
     USER_PASSWORD = 'abc123'
 
+    CATEGORY_NAME = 'Entrees'
+    MENU_ITEM_NAME = 'Burger'
     TABLE_NUMBER = 'A-1'
 
     @staticmethod
@@ -67,6 +70,8 @@ class SearedQuailTestCase(TestCase):
         self.client.login(username=self.USER_USERNAME, password=self.USER_PASSWORD)
 
         # Create initial instances
+        self.category = Category.objects.create(name=self.CATEGORY_NAME)
+        self.menu_item = MenuItem.objects.create(category=self.category, name=self.MENU_ITEM_NAME)
         self.table = Table.objects.create(number=self.TABLE_NUMBER)
 
     def testRender200s(self):
