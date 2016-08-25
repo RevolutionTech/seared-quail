@@ -36,7 +36,11 @@ class MenuForm(forms.Form):
             if label.startswith('quantity-'):
                 menuitemid = int(label.split('-')[1])
                 menuitem = MenuItem.objects.get(id=menuitemid)
-                raise forms.ValidationError("The item {item_name} is no longer available. Please make a different order.".format(item_name=menuitem.name))
+                raise forms.ValidationError(
+                    "The item {item_name} is no longer available. Please make a different order.".format(
+                        item_name=menuitem.name
+                    )
+                )
 
     def clean(self):
         cleaned_data = super(MenuForm, self).clean()
