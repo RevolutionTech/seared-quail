@@ -1,5 +1,6 @@
 # Seared Quail
-### Created by: Lucas Connors
+
+[![Build Status](https://travis-ci.org/RevolutionTech/seared-quail.svg?branch=master)](https://travis-ci.org/RevolutionTech/seared-quail)
 
 ![Seared Quail](http://revolutiontech.ca/media/img/searedquail1.png)
 

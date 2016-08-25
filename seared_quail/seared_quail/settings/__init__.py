@@ -9,11 +9,15 @@ import os
 
 from cbsettings import switcher
 
+from seared_quail.settings.travis import TravisSettings
+
 
 SETTINGS_DIR = os.path.dirname(__file__)
 
 dev_settings_exists = os.path.isfile(os.path.join(SETTINGS_DIR, 'dev.py'))
 prod_settings_exists = os.path.isfile(os.path.join(SETTINGS_DIR, 'prod.py'))
+
+switcher.register(TravisSettings, 'TRAVIS' in os.environ)
 
 if dev_settings_exists:
     from seared_quail.settings.dev import DevSettings

@@ -48,7 +48,7 @@ class BaseSettings(DjangoDefaults):
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'seared_quail',
-            'USER': 'perdiem',
+            'USER': 'postgres',
             'PASSWORD': '',
             'HOST': 'localhost',
             'PORT': '',
