@@ -19,7 +19,8 @@ from order.views import redirect_authenticated, LoginView, logout, KitchenView, 
 sdjango.autodiscover()
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url(r'^socket\.io', include(sdjango.urls)),
 
     url(r'^admin/', include(admin.site.urls)),
@@ -35,6 +36,7 @@ urlpatterns = patterns('',
 
 # Add media folder to urls when DEBUG = True
 if settings.DEBUG:
-    urlpatterns += patterns('',
+    urlpatterns += patterns(
+        '',
         url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT})
     )
