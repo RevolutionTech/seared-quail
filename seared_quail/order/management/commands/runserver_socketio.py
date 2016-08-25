@@ -79,7 +79,6 @@ class Command(BaseCommand):
             return handler
         use_static_handler = options.get('use_static_handler', True)
         insecure_serving = options.get('insecure_serving', False)
-        if (settings.DEBUG and use_static_handler or \
-            (use_static_handler and insecure_serving)):
+        if (settings.DEBUG and use_static_handler or (use_static_handler and insecure_serving)):
             handler = StaticFilesHandler(handler)
         return handler
