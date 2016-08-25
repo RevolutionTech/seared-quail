@@ -7,12 +7,16 @@
 from django.contrib.auth.models import User
 from django.test import TestCase
 
+from restaurant.models import Table
+
 
 class SearedQuailTestCase(TestCase):
 
     USER_USERNAME = 'jsmith'
     USER_EMAIL = 'jsmith@example.com'
     USER_PASSWORD = 'abc123'
+
+    TABLE_NUMBER = 'A-1'
 
     @staticmethod
     def strip_query_params(url):
@@ -54,11 +58,16 @@ class SearedQuailTestCase(TestCase):
 
     def setUp(self):
         super(SearedQuailTestCase, self).setUp()
+
+        # Create admin user
         self.user = User.objects.create_user(self.USER_USERNAME, email=self.USER_EMAIL, password=self.USER_PASSWORD)
         self.user.is_staff = True
         self.user.is_superuser = True
         self.user.save()
         self.client.login(username=self.USER_USERNAME, password=self.USER_PASSWORD)
+
+        # Create initial instances
+        self.table = Table.objects.create(number=self.TABLE_NUMBER)
 
     def testRender200s(self):
         for url in self.get200s():
