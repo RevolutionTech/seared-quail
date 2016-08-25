@@ -29,6 +29,10 @@ class MenuWebTestCase(SearedQuailTestCase):
             '/',
         ]
 
+    def testMenuUnauthenticated(self):
+        self.client.logout()
+        self.assertResponseRenders('/')
+
     def testPlaceOrder(self):
         # Construct POST data for placing an order
         place_order_data = {'table': self.table.id}
