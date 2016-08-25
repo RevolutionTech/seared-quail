@@ -27,6 +27,7 @@ class OrderWebTestCase(SearedQuailTestCase):
     def get200s(self):
         return [
             '/kitchen/',
+            '/kitchen/update/',
         ]
 
     def testMarkOrderComplete(self):
