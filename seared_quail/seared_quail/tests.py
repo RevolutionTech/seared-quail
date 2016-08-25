@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 
 from menu.models import Category, MenuItem
+from order.models import Order, OrderMenuItem
 from restaurant.models import Table
 
 
@@ -73,6 +74,10 @@ class SearedQuailTestCase(TestCase):
         self.category = Category.objects.create(name=self.CATEGORY_NAME)
         self.menu_item = MenuItem.objects.create(category=self.category, name=self.MENU_ITEM_NAME)
         self.table = Table.objects.create(number=self.TABLE_NUMBER)
+
+        # Place an order
+        self.order = Order.objects.create(table=self.table)
+        OrderMenuItem.objects.create(order=self.order, menuitem=self.menu_item)
 
     def testRender200s(self):
         for url in self.get200s():

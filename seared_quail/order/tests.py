@@ -4,6 +4,7 @@
 
 """
 
+from order.models import Order
 from seared_quail.tests import SearedQuailTestCase
 
 
@@ -27,3 +28,8 @@ class OrderWebTestCase(SearedQuailTestCase):
         return [
             '/kitchen/',
         ]
+
+    def testMarkOrderComplete(self):
+        num_pending_orders = Order.objects.filter(completed__isnull=True).count()
+        self.assertResponseRenders('/kitchen/completeorder/', method='POST', data={'order': self.order.id})
+        self.assertEquals(Order.objects.filter(completed__isnull=True).count(), num_pending_orders - 1)
