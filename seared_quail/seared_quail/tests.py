@@ -63,3 +63,15 @@ class SearedQuailTestCase(TestCase):
     def testRender200s(self):
         for url in self.get200s():
             self.assertResponseRenders(url)
+
+
+class AdminWebTestCase(SearedQuailTestCase):
+
+    def get200s(self):
+        return [
+            '/admin/',
+        ]
+
+    def testAdminLoginPageRenders(self):
+        self.client.logout()
+        self.assertResponseRedirects('/admin/', '/admin/login/')
