@@ -4,6 +4,7 @@
 
 """
 
+from menu.models import MenuItem
 from seared_quail.tests import SearedQuailTestCase
 
 
@@ -27,3 +28,13 @@ class MenuWebTestCase(SearedQuailTestCase):
         return [
             '/',
         ]
+
+    def testPlaceOrder(self):
+        # Construct POST data for placing an order
+        place_order_data = {'table': self.table.id}
+        for menu_item in MenuItem.objects.all():
+            place_order_data['quantity-{menu_item_id}'.format(menu_item_id=menu_item.id)] = 0
+        place_order_data['quantity-{menu_item_id}'.format(menu_item_id=self.menu_item.id)] = 1
+
+        self.assertResponseRenders('/')
+        self.assertResponseRedirects('/', '/', method='POST', data=place_order_data)
