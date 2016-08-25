@@ -1,3 +1,15 @@
-from django.test import TestCase
+"""
+:Created: 24 August 2016
+:Author: Lucas Connors
 
-# Create your tests here.
+"""
+
+from seared_quail.tests import SearedQuailTestCase
+
+
+class OrderWebTestCase(SearedQuailTestCase):
+
+    def get200s(self):
+        return [
+            '/kitchen/',
+        ]
