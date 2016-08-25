@@ -4,10 +4,15 @@
 
 """
 
+from django.contrib.auth.models import User
 from django.test import TestCase
 
 
 class SearedQuailTestCase(TestCase):
+
+    USER_USERNAME = 'jsmith'
+    USER_EMAIL = 'jsmith@example.com'
+    USER_PASSWORD = 'abc123'
 
     @staticmethod
     def strip_query_params(url):
@@ -46,6 +51,14 @@ class SearedQuailTestCase(TestCase):
 
     def get200s(self):
         return []
+
+    def setUp(self):
+        super(SearedQuailTestCase, self).setUp()
+        self.user = User.objects.create_user(self.USER_USERNAME, email=self.USER_EMAIL, password=self.USER_PASSWORD)
+        self.user.is_staff = True
+        self.user.is_superuser = True
+        self.user.save()
+        self.client.login(username=self.USER_USERNAME, password=self.USER_PASSWORD)
 
     def testRender200s(self):
         for url in self.get200s():
