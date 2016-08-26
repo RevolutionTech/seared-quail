@@ -4,7 +4,6 @@
 
 """
 
-import datetime
 import functools
 import json
 
@@ -13,6 +12,7 @@ from django.contrib.auth import authenticate, login as auth_login, \
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
+from django.utils import timezone
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
 
@@ -90,7 +90,7 @@ def complete_order(request):
     form = OrderCompleteForm(request.POST)
     if form.is_valid():
         order = form.cleaned_data['order']
-        order.completed = datetime.datetime.now()
+        order.completed = timezone.now()
         order.save()
         return HttpResponse("")
 
