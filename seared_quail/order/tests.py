@@ -21,6 +21,14 @@ class AuthWebTestCase(SearedQuailTestCase):
         }
         self.assertResponseRedirects('/login/', '/kitchen', method='POST', data=login_data)
 
+    def testLoginWithEmail(self):
+        self.client.logout()
+        login_data = {
+            'username': self.USER_EMAIL,
+            'password': self.USER_PASSWORD,
+        }
+        self.assertResponseRedirects('/login/', '/kitchen', method='POST', data=login_data)
+
 
 class OrderWebTestCase(SearedQuailTestCase):
 
