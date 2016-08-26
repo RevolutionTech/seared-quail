@@ -82,3 +82,17 @@ class MenuWebTestCase(SearedQuailTestCase):
         data['quantity-{menu_item_id}'.format(menu_item_id=self.menu_item.id)] = 1
         self.assertResponseRenders('/')
         self.assertResponseRedirects('/', '/', method='POST', data=data)
+
+    def testOrderForUnavailableMenuItem(self):
+        # The user loads the menu and prepares an order
+        self.assertResponseRenders('/')
+        data = self.construct_initial_order_data()
+        data['quantity={menu_item_id}'.format(menu_item_id=self.menu_item.id)] = 1
+
+        # Unfortunately, the item just became unavailable
+        self.menu_item.user_can_order = False
+        self.menu_item.save()
+
+        # The user submits their order, but it is unsuccessful
+        # and they need to revise their order
+        self.assertResponseRenders('/', method='POST', data=data, has_form_error=True)
