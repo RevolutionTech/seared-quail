@@ -4,7 +4,7 @@
 
 """
 
-from menu.models import MenuItem
+from menu.models import Category, MenuItem
 from seared_quail.tests import SearedQuailTestCase
 
 
@@ -20,6 +20,28 @@ class MenuAdminWebTestCase(SearedQuailTestCase):
             '/admin/menu/menuitem/add/',
             '/admin/menu/menuitem/{menu_item_id}/'.format(menu_item_id=self.menu_item.id),
         ]
+
+    def testCategoryCannotBeAncestorOfSelf(self):
+        # Create a new category, which is a subcategory of Entrees
+        data = {
+            'name': 'Sandwiches',
+            'parent': self.category.id,
+        }
+        self.assertResponseRedirects('/admin/menu/category/add/', '/admin/menu/category/', method='POST', data=data)
+        sandwiches_category = Category.objects.get(name='Sandwiches')
+
+        # Attempt to change the Entrees category to be a
+        # subcategory of Sandwiches, that shouldn't work
+        url = '/admin/menu/category/{category_id}/'.format(category_id=self.category.id)
+        data = {
+            'name': self.category.name,
+            'parent': sandwiches_category.id,
+        }
+        self.assertResponseRenders(url, method='POST', data=data, has_form_error=True)
+
+        # But Entrees can be a category without a parent
+        del data['parent']
+        self.assertResponseRedirects(url, '/admin/menu/category/', method='POST', data=data)
 
     def testUserCanOrderMenuItemSetting(self):
         # A user cannot order an item that's not on the menu
