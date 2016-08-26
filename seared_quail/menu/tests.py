@@ -21,6 +21,22 @@ class MenuAdminWebTestCase(SearedQuailTestCase):
             '/admin/menu/menuitem/{menu_item_id}/'.format(menu_item_id=self.menu_item.id),
         ]
 
+    def testUserCanOrderMenuItemSetting(self):
+        # A user cannot order an item that's not on the menu
+        url = '/admin/menu/menuitem/{menu_item_id}/'.format(menu_item_id=self.menu_item.id)
+        data = {
+            'category': self.category.id,
+            'name': 'Soup of the Day',
+            'show_in_menu': False,
+            'user_can_order': True,
+        }
+        self.assertResponseRenders(url, method='POST', data=data, has_form_error=True)
+
+        # But if we disable the user from being able to order the item,
+        # then there's no problem if it's not on the menu
+        data['user_can_order'] = False
+        self.assertResponseRedirects(url, '/admin/menu/menuitem/', method='POST', data=data)
+
 
 class MenuWebTestCase(SearedQuailTestCase):
 
