@@ -62,6 +62,12 @@ class MenuAdminWebTestCase(SearedQuailTestCase):
 
 class MenuWebTestCase(SearedQuailTestCase):
 
+    def construct_initial_order_data(self):
+        data = {'table': self.table.id}
+        for menu_item in MenuItem.objects.all():
+            data['quantity-{menu_item_id}'.format(menu_item_id=menu_item.id)] = 0
+        return data
+
     def get200s(self):
         return [
             '/',
@@ -72,11 +78,7 @@ class MenuWebTestCase(SearedQuailTestCase):
         self.assertResponseRenders('/')
 
     def testPlaceOrder(self):
-        # Construct POST data for placing an order
-        place_order_data = {'table': self.table.id}
-        for menu_item in MenuItem.objects.all():
-            place_order_data['quantity-{menu_item_id}'.format(menu_item_id=menu_item.id)] = 0
-        place_order_data['quantity-{menu_item_id}'.format(menu_item_id=self.menu_item.id)] = 1
-
+        data = self.construct_initial_order_data()
+        data['quantity-{menu_item_id}'.format(menu_item_id=self.menu_item.id)] = 1
         self.assertResponseRenders('/')
-        self.assertResponseRedirects('/', '/', method='POST', data=place_order_data)
+        self.assertResponseRedirects('/', '/', method='POST', data=data)
