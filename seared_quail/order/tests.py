@@ -29,6 +29,20 @@ class AuthWebTestCase(SearedQuailTestCase):
         }
         self.assertResponseRedirects('/login/', '/kitchen', method='POST', data=login_data)
 
+    def testUserDoesNotExist(self):
+        self.client.logout()
+
+        # Fail to log in with invalid username
+        login_data = {
+            'username': 'does-not-exist',
+            'password': self.USER_PASSWORD,
+        }
+        self.assertResponseRenders('/login/', method='POST', data=login_data, has_form_error=True)
+
+        # Fail to log in with invalid email
+        login_data['username'] = 'does_not_exist@example.com'
+        self.assertResponseRenders('/login/', method='POST', data=login_data, has_form_error=True)
+
 
 class OrderWebTestCase(SearedQuailTestCase):
 
