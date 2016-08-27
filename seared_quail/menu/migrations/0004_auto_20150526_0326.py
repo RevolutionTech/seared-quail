@@ -31,5 +31,5 @@ class Migration(migrations.Migration):
             field=models.PositiveIntegerField(default=0, editable=False, db_index=True),
             preserve_default=False,
         ),
-        migrations.RunPython(set_initial_orders),
+        migrations.RunPython(set_initial_orders, lambda *args: None),
     ]

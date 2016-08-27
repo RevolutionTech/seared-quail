@@ -6,7 +6,27 @@
 
 from menu.models import Category, MenuItem
 from restaurant.models import Table
-from seared_quail.tests import SearedQuailTestCase
+from seared_quail.tests import SearedQuailTestCase, MigrationTestCase
+
+
+class MenuSetInitialOrdersMigrationTestCase(MigrationTestCase):
+
+    migrate_from = '0003_auto_20150514_2203'
+    migrate_to = '0006_auto_20150527_0215'
+
+    def setUpBeforeMigration(self, apps):
+        Category = apps.get_model('menu', 'Category')
+        MenuItem = apps.get_model('menu', 'MenuItem')
+        self.premigration_category = Category.objects.create(name='Appetizers')
+        self.premigration_menuitem = MenuItem.objects.create(category=self.premigration_category, name='House Salad')
+
+    def testInstancesHaveInitialOrder(self):
+        Category = self.apps.get_model('menu', 'Category')
+        MenuItem = self.apps.get_model('menu', 'MenuItem')
+        category = Category.objects.get(id=self.premigration_category.id)
+        menuitem = MenuItem.objects.get(id=self.premigration_menuitem.id)
+        self.assertEquals(category.order, category.id)
+        self.assertEquals(menuitem.order, menuitem.id)
 
 
 class MenuAdminWebTestCase(SearedQuailTestCase):
