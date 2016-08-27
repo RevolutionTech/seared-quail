@@ -11,7 +11,7 @@ from django.contrib.auth import authenticate, login as auth_login, \
     logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.utils import timezone
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
@@ -94,4 +94,4 @@ def complete_order(request):
         order.save()
         return HttpResponse("")
 
-    return HttpResponse(status=500)
+    return HttpResponseNotFound("Provided order ID does not exist.")
