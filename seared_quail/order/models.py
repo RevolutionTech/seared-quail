@@ -16,9 +16,6 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     completed = models.DateTimeField(null=True, blank=True)
 
-    def __unicode__(self):
-        return "Order from table {table}".format(table=self.table)
-
     def encodeJSON(self):
         return {
             'id': self.id,
@@ -33,9 +30,6 @@ class OrderMenuItem(models.Model):
     menuitem = models.ForeignKey(MenuItem)
     quantity = models.PositiveSmallIntegerField(default=1)
     note = models.TextField(null=True, blank=True)
-
-    def __unicode__(self):
-        return "{menuitem} from {order}".format(menuitem=self.menuitem, order=self.order)
 
     def encodeJSON(self):
         return {
