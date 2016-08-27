@@ -43,24 +43,24 @@ class MenuAdminWebTestCase(SearedQuailTestCase):
         ]
 
     def testCategoryCannotBeAncestorOfSelf(self):
-        # Create a new category, which is a subcategory of Entrees
+        # Create a new category, which is a subcategory of Drinks
         data = {
-            'name': 'Sandwiches',
+            'name': 'Juices',
             'parent': self.category.id,
         }
         self.assertResponseRedirects('/admin/menu/category/add/', '/admin/menu/category/', method='POST', data=data)
-        sandwiches_category = Category.objects.get(name='Sandwiches')
+        juices_category = Category.objects.get(name='Juices')
 
-        # Attempt to change the Entrees category to be a
-        # subcategory of Sandwiches, that shouldn't work
+        # Attempt to change the Drinks category to be a
+        # subcategory of Juices, that shouldn't work
         url = '/admin/menu/category/{category_id}/'.format(category_id=self.category.id)
         data = {
             'name': self.category.name,
-            'parent': sandwiches_category.id,
+            'parent': juices_category.id,
         }
         self.assertResponseRenders(url, method='POST', data=data, has_form_error=True)
 
-        # But Entrees can be a category without a parent
+        # But Drinks can be a category without a parent
         del data['parent']
         self.assertResponseRedirects(url, '/admin/menu/category/', method='POST', data=data)
 
