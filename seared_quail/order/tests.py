@@ -29,6 +29,9 @@ class AuthWebTestCase(SearedQuailTestCase):
         }
         self.assertResponseRedirects('/login/', '/kitchen', method='POST', data=login_data)
 
+    def testRedirectAuthenticated(self):
+        self.assertResponseRedirects('/login/', '/kitchen')
+
     def testInvalidCredentialsFails(self):
         self.client.logout()
 
