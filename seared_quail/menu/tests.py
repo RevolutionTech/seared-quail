@@ -5,6 +5,7 @@
 """
 
 from menu.models import Category, MenuItem
+from restaurant.models import Table
 from seared_quail.tests import SearedQuailTestCase
 
 
@@ -82,6 +83,12 @@ class MenuWebTestCase(SearedQuailTestCase):
         data['quantity-{menu_item_id}'.format(menu_item_id=self.menu_item.id)] = 1
         self.assertResponseRenders('/')
         self.assertResponseRedirects('/', '/', method='POST', data=data)
+
+    def testOrderFromInvalidTableFails(self):
+        invalid_table_id = Table.objects.all().order_by('-id')[0].id + 1
+        data = self.construct_initial_order_data()
+        data['table'] = invalid_table_id
+        self.assertResponseRenders('/', method='POST', data=data, has_form_error=True)
 
     def testOrderForUnavailableMenuItem(self):
         # The user loads the menu and prepares an order
