@@ -18,6 +18,5 @@ script:
 
 after_success:
   - ls -al
-  - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://raw.githubusercontent.com/codecov/codecov-bash/a443c9f7c3ab4c336d10f1b5812e7ac7a979ebf3/codecov)
   - ls -al
-  - echo "$PWD"
