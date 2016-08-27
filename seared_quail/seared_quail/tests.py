@@ -18,8 +18,10 @@ class SearedQuailTestCase(TestCase):
     USER_EMAIL = 'jsmith@example.com'
     USER_PASSWORD = 'abc123'
 
-    CATEGORY_NAME = 'Entrees'
-    MENU_ITEM_NAME = 'Burger'
+    CATEGORY_NAME = 'Drinks'
+    SUBCATEGORY_NAME = 'Soda'
+    MENU_ITEM_NAME = 'Water'
+    MENU_ITEM_IN_SUBCATEGORY_NAME = 'Cola'
     TABLE_NUMBER = 'A-1'
 
     @staticmethod
@@ -73,6 +75,11 @@ class SearedQuailTestCase(TestCase):
         # Create initial instances
         self.category = Category.objects.create(name=self.CATEGORY_NAME)
         self.menu_item = MenuItem.objects.create(category=self.category, name=self.MENU_ITEM_NAME)
+        self.subcategory = Category.objects.create(name=self.SUBCATEGORY_NAME, parent=self.category)
+        self.menu_item_in_subcategory = MenuItem.objects.create(
+            category=self.subcategory,
+            name=self.MENU_ITEM_IN_SUBCATEGORY_NAME
+        )
         self.table = Table.objects.create(number=self.TABLE_NUMBER)
 
         # Place an order
