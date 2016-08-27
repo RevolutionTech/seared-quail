@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.core.validators import validate_email
 
 from order.models import Order
+from seared_quail.exceptions import IllegalStateException
 
 
 class LoginForm(forms.Form):
@@ -41,8 +42,7 @@ class LoginForm(forms.Form):
             except User.DoesNotExist:
                 raise forms.ValidationError(cls.FAILED_AUTH_WARNING)
 
-        else:
-            raise forms.ValidationError(cls.FAILED_AUTH_WARNING)
+        raise IllegalStateException
 
     def clean(self):
         """ Verify that user with given credentials exists """
