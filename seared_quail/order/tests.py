@@ -29,7 +29,7 @@ class AuthWebTestCase(SearedQuailTestCase):
         }
         self.assertResponseRedirects('/login/', '/kitchen', method='POST', data=login_data)
 
-    def testUserDoesNotExist(self):
+    def testInvalidCredentialsFails(self):
         self.client.logout()
 
         # Fail to log in with invalid username
@@ -41,6 +41,13 @@ class AuthWebTestCase(SearedQuailTestCase):
 
         # Fail to log in with invalid email
         login_data['username'] = 'does_not_exist@example.com'
+        self.assertResponseRenders('/login/', method='POST', data=login_data, has_form_error=True)
+
+        # Fail to log in with invalid password
+        login_data = {
+            'username': self.USER_USERNAME,
+            'password': 'wrongpass',
+        }
         self.assertResponseRenders('/login/', method='POST', data=login_data, has_form_error=True)
 
 
