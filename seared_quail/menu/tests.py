@@ -9,24 +9,39 @@ from restaurant.models import Table
 from seared_quail.tests import SearedQuailTestCase, MigrationTestCase
 
 
-class MenuSetInitialOrdersMigrationTestCase(MigrationTestCase):
+class MenuItemInitialOrdersMigrationTestCase(MigrationTestCase):
 
     migrate_from = '0003_auto_20150514_2203'
+    migrate_to = '0005_auto_20160829_0618'
+
+    def setUpBeforeMigration(self, apps):
+        # Create a category for the menu item
+        Category = apps.get_model('menu', 'Category')
+        category = Category.objects.create(name='Appetizers')
+
+        # Create a menu item
+        MenuItem = apps.get_model('menu', 'MenuItem')
+        self.premigration_menuitem = MenuItem.objects.create(category=category, name='House Salad')
+
+    def testInstancesHaveInitialOrder(self):
+        MenuItem = self.apps.get_model('menu', 'MenuItem')
+        menuitem = MenuItem.objects.get(id=self.premigration_menuitem.id)
+        self.assertEquals(menuitem.order, menuitem.id)
+
+
+class CategoryInitialOrdersMigrationTestCase(MigrationTestCase):
+
+    migrate_from = '0006_category_parent'
     migrate_to = '0008_auto_20160829_0622'
 
     def setUpBeforeMigration(self, apps):
         Category = apps.get_model('menu', 'Category')
-        MenuItem = apps.get_model('menu', 'MenuItem')
         self.premigration_category = Category.objects.create(name='Appetizers')
-        self.premigration_menuitem = MenuItem.objects.create(category=self.premigration_category, name='House Salad')
 
-    def testInstancesHaveInitialOrder(self):
+    def testCategoriesHaveInitialOrder(self):
         Category = self.apps.get_model('menu', 'Category')
-        MenuItem = self.apps.get_model('menu', 'MenuItem')
         category = Category.objects.get(id=self.premigration_category.id)
-        menuitem = MenuItem.objects.get(id=self.premigration_menuitem.id)
         self.assertEquals(category.order, category.id)
-        self.assertEquals(menuitem.order, menuitem.id)
 
 
 class MenuAdminWebTestCase(SearedQuailTestCase):
