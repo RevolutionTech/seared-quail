@@ -6,12 +6,6 @@ from django.db import models, migrations
 
 class Migration(migrations.Migration):
 
-    def set_initial_orders(apps, schema_editor):
-        MenuItem = apps.get_model("menu", "MenuItem")
-        for menuitem in MenuItem.objects.all():
-            menuitem.order = menuitem.id
-            menuitem.save()
-
     dependencies = [
         ('menu', '0003_auto_20150514_2203'),
     ]
@@ -31,5 +25,4 @@ class Migration(migrations.Migration):
             field=models.PositiveIntegerField(default=0, editable=False, db_index=True),
             preserve_default=False,
         ),
-        migrations.RunPython(set_initial_orders, lambda *args: None),
     ]

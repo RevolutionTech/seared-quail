@@ -12,7 +12,7 @@ from seared_quail.tests import SearedQuailTestCase, MigrationTestCase
 class MenuSetInitialOrdersMigrationTestCase(MigrationTestCase):
 
     migrate_from = '0003_auto_20150514_2203'
-    migrate_to = '0006_auto_20150527_0215'
+    migrate_to = '0008_auto_20160829_0622'
 
     def setUpBeforeMigration(self, apps):
         Category = apps.get_model('menu', 'Category')
