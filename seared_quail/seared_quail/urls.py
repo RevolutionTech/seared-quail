@@ -22,7 +22,7 @@ sdjango.autodiscover()
 urlpatterns = [
     url(r'^socket\.io', include(sdjango.urls)),
 
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
 
     url(r'^$', csrf_exempt(MenuView.as_view()), name='menu'),
 

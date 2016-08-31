@@ -12,7 +12,7 @@ from restaurant.models import Table
 
 class Order(models.Model):
 
-    table = models.ForeignKey(Table)
+    table = models.ForeignKey(Table, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     completed = models.DateTimeField(null=True, blank=True)
 
@@ -26,8 +26,8 @@ class Order(models.Model):
 
 class OrderMenuItem(models.Model):
 
-    order = models.ForeignKey(Order)
-    menuitem = models.ForeignKey(MenuItem)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    menuitem = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
     quantity = models.PositiveSmallIntegerField(default=1)
     note = models.TextField(null=True, blank=True)
 

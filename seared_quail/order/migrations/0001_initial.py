@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('created', models.DateTimeField(auto_now_add=True)),
-                ('table', models.ForeignKey(to='restaurant.Table')),
+                ('table', models.ForeignKey(to='restaurant.Table', on_delete=models.CASCADE)),
             ],
             options={
             },
@@ -28,8 +28,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('note', models.TextField()),
-                ('menuitem', models.ForeignKey(to='menu.MenuItem')),
-                ('order', models.ForeignKey(to='order.Order')),
+                ('menuitem', models.ForeignKey(to='menu.MenuItem', on_delete=models.CASCADE)),
+                ('order', models.ForeignKey(to='order.Order', on_delete=models.CASCADE)),
             ],
             options={
             },

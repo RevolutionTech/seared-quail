@@ -51,10 +51,10 @@ class MenuAdminWebTestCase(SearedQuailTestCase):
             '/admin/menu/',
             '/admin/menu/category/',
             '/admin/menu/category/add/',
-            '/admin/menu/category/{category_id}/'.format(category_id=self.category.id),
+            '/admin/menu/category/{category_id}/change/'.format(category_id=self.category.id),
             '/admin/menu/menuitem/',
             '/admin/menu/menuitem/add/',
-            '/admin/menu/menuitem/{menu_item_id}/'.format(menu_item_id=self.menu_item.id),
+            '/admin/menu/menuitem/{menu_item_id}/change/'.format(menu_item_id=self.menu_item.id),
         ]
 
     def testCategoryCannotBeAncestorOfSelf(self):
@@ -68,7 +68,7 @@ class MenuAdminWebTestCase(SearedQuailTestCase):
 
         # Attempt to change the Drinks category to be a
         # subcategory of Juices, that shouldn't work
-        url = '/admin/menu/category/{category_id}/'.format(category_id=self.category.id)
+        url = '/admin/menu/category/{category_id}/change/'.format(category_id=self.category.id)
         data = {
             'name': self.category.name,
             'parent': juices_category.id,
@@ -81,7 +81,7 @@ class MenuAdminWebTestCase(SearedQuailTestCase):
 
     def testUserCanOrderMenuItemSetting(self):
         # A user cannot order an item that's not on the menu
-        url = '/admin/menu/menuitem/{menu_item_id}/'.format(menu_item_id=self.menu_item.id)
+        url = '/admin/menu/menuitem/{menu_item_id}/change/'.format(menu_item_id=self.menu_item.id)
         data = {
             'category': self.category.id,
             'name': 'Soup of the Day',

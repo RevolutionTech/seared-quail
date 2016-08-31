@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='category',
             name='parent',
-            field=models.ForeignKey(blank=True, to='menu.Category', null=True),
+            field=models.ForeignKey(blank=True, to='menu.Category', null=True, on_delete=models.SET_NULL),
         ),
     ]
