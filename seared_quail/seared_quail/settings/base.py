@@ -15,7 +15,6 @@ class BaseSettings(DjangoDefaults):
     TOP_DIR = os.path.dirname(BASE_DIR)
 
     DEBUG = True
-    TEMPLATE_DEBUG = True
     ALLOWED_HOSTS = []
 
     # Application definition
@@ -41,6 +40,22 @@ class BaseSettings(DjangoDefaults):
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
     )
     ROOT_URLCONF = 'seared_quail.urls'
+
+    TEMPLATES = [
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'DIRS': [os.path.join(TOP_DIR, 'templates')],
+            'APP_DIRS': True,
+            'OPTIONS': {
+                'context_processors': [
+                    'django.template.context_processors.debug',
+                    'django.template.context_processors.request',
+                    'django.contrib.auth.context_processors.auth',
+                    'django.contrib.messages.context_processors.messages',
+                ],
+            },
+        },
+    ]
     WSGI_APPLICATION = 'seared_quail.wsgi.application'
 
     # Database
@@ -66,9 +81,6 @@ class BaseSettings(DjangoDefaults):
     STATIC_URL = '/static/'
     STATICFILES_DIRS = (
         os.path.join(TOP_DIR, 'static'),
-    )
-    TEMPLATE_DIRS = (
-        os.path.join(TOP_DIR, 'templates'),
     )
 
     # Authentication
