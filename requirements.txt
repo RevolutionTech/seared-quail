@@ -1,10 +1,10 @@
 coverage==4.2
 gevent==1.1.2
-psycopg2==2.6.1
+psycopg2==2.6.2
 psycogreen==1.0
-gunicorn==0.16.1
+gunicorn==19.6.0
 Django==1.8.2
 django-ordered-model==0.4.2
-Pillow==2.8.1
+Pillow==3.3.1
 django-classbasedsettings==1.5.0
 -e git://github.com/abourget/gevent-socketio.git@8971328ab467adc49bec98bc9eb7d13c89d9dac6#egg=gevent_socketio-master
