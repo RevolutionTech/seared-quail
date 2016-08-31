@@ -5,7 +5,7 @@
 """
 
 from django.conf import settings
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
@@ -19,8 +19,7 @@ from order.views import redirect_authenticated, LoginView, logout, KitchenView, 
 sdjango.autodiscover()
 
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url(r'^socket\.io', include(sdjango.urls)),
 
     url(r'^admin/', include(admin.site.urls)),
@@ -32,11 +31,10 @@ urlpatterns = patterns(
     url(r'^kitchen/?$', login_required(KitchenView.as_view()), name='kitchen'),
     url(r'^kitchen/update/?$', update_orders, name='update_orders'),
     url(r'^kitchen/completeorder/?$', complete_order, name='complete_order'),
-)
+]
 
 # Add media folder to urls when DEBUG = True
 if settings.DEBUG:
-    urlpatterns += patterns(
-        '',
+    urlpatterns.append(
         url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT})
     )
