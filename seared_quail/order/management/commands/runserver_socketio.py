@@ -7,7 +7,7 @@ from signal import SIGINT
 from django.conf import settings
 from django.core.handlers.wsgi import WSGIHandler
 from django.core.management.base import BaseCommand, CommandError
-from django.core.management.commands.runserver import naiveip_re, DEFAULT_PORT
+from django.core.management.commands.runserver import naiveip_re
 from django.utils.autoreload import code_changed, restart_with_reloader
 from socketio.server import SocketIOServer
 
@@ -30,7 +30,7 @@ class Command(BaseCommand):
         try:
             default_port = settings.SOCKETIO_PORT
         except AttributeError:
-            default_port = DEFAULT_PORT
+            default_port = '8000'
 
         parser.add_argument(
             'addrport',
