@@ -7,4 +7,4 @@ Django==1.9.9
 django-ordered-model==1.2.1
 Pillow==3.3.1
 django-classbasedsettings==1.5.0
--e git://github.com/abourget/gevent-socketio.git@8971328ab467adc49bec98bc9eb7d13c89d9dac6#egg=gevent_socketio-master
+-e git://github.com/RevolutionTech/gevent-socketio.git@0e1d9d5d461530724522d12d592cde9fc68264a9#egg=gevent_socketio-master
