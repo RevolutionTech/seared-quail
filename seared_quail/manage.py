@@ -16,6 +16,9 @@ if len(sys.argv) >= 2 and sys.argv[1] == 'test':
             'Deprecated allow_tags attribute used on field move_up_down_links\. '
             'Use django\.utils\.safestring\.format_html\(\), format_html_join\(\), or mark_safe\(\) instead\.'
         ),
+
+        # django-ordered-model: https://github.com/bfirsh/django-ordered-model/issues/100
+        'Importing from django\.core\.urlresolvers is deprecated in favor of django\.urls\.',
     ]
     for django20warning in django20warnings:
         warnings.filterwarnings('ignore', category=RemovedInDjango20Warning, message=django20warning)

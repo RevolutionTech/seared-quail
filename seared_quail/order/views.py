@@ -29,7 +29,7 @@ def redirect_authenticated(func):
 
     @functools.wraps(func)
     def wrapper(request, *args, **kwargs):
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             return HttpResponseRedirect(reverse('kitchen'))
         return func(request, *args, **kwargs)
 
