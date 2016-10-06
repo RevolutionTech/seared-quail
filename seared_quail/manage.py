@@ -14,7 +14,8 @@ if len(sys.argv) >= 2 and sys.argv[1] == 'test':
         # django-ordered-model: https://github.com/bfirsh/django-ordered-model/issues/99
         (
             'Deprecated allow_tags attribute used on field move_up_down_links\. '
-            'Use django\.utils\.safestring\.format_html\(\), format_html_join\(\), or mark_safe\(\) instead\.'
+            'Use django\.utils\.html\.format_html\(\), format_html_join\(\), '
+            'or django\.utils\.safestring\.mark_safe\(\) instead\.'
         ),
 
         # django-ordered-model: https://github.com/bfirsh/django-ordered-model/issues/100
