@@ -73,7 +73,7 @@ In the production environment, you'll need to create a different dev settings co
 
     class ProdSettings(DevSettings):
         DEBUG = False
-        ACCEPTABLE_HOSTS = ['127.0.0.1', 'localhost',]
+        ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'mydomain.com']
 
 Alternatively, you may choose to merge your production `dev.py` file into `prod.py`. In that case, be sure to subclass `BaseSettings` instead of `DevSettings` and make sure all definitions from `dev.py` are in `prod.py`.
 
