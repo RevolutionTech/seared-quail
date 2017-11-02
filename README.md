@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/RevolutionTech/seared-quail.svg?branch=master)](https://travis-ci.org/RevolutionTech/seared-quail)
 [![codecov](https://codecov.io/gh/RevolutionTech/seared-quail/branch/master/graph/badge.svg)](https://codecov.io/gh/RevolutionTech/seared-quail)
-[![Dependency Status](https://www.versioneye.com/user/projects/57be89fc939fc600508e8a3e/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/57be89fc939fc600508e8a3e)
+[![Updates](https://pyup.io/repos/github/RevolutionTech/seared-quail/shield.svg)](https://pyup.io/repos/github/RevolutionTech/seared-quail/)
 
 ![Seared Quail](http://revolutiontech.ca/media/img/searedquail1.png)
 
