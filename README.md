@@ -1,5 +1,6 @@
 # Seared Quail
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bf08621ec3d54837b3d64f8e880f6d9e)](https://www.codacy.com/app/RevolutionTech/seared-quail?utm_source=github.com&utm_medium=referral&utm_content=RevolutionTech/seared-quail&utm_campaign=badger)
 [![Build Status](https://travis-ci.org/RevolutionTech/seared-quail.svg?branch=master)](https://travis-ci.org/RevolutionTech/seared-quail)
 [![codecov](https://codecov.io/gh/RevolutionTech/seared-quail/branch/master/graph/badge.svg)](https://codecov.io/gh/RevolutionTech/seared-quail)
 [![Updates](https://pyup.io/repos/github/RevolutionTech/seared-quail/shield.svg)](https://pyup.io/repos/github/RevolutionTech/seared-quail/)
