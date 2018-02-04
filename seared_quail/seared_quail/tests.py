@@ -8,7 +8,7 @@ from django.apps import apps
 from django.contrib.auth.models import User
 from django.db import connection
 from django.db.migrations.executor import MigrationExecutor
-from django.test import TestCase
+from django.test import TransactionTestCase
 
 from pigeon.test import RenderTestCase
 
@@ -54,7 +54,7 @@ class SearedQuailTestCase(RenderTestCase):
         OrderMenuItem.objects.create(order=self.order, menuitem=self.menu_item)
 
 
-class MigrationTestCase(TestCase):
+class MigrationTestCase(TransactionTestCase):
     """
     Ref: https://www.caktusgroup.com/blog/2016/02/02/writing-unit-tests-django-migrations/
     """
@@ -87,7 +87,6 @@ class MigrationTestCase(TestCase):
 
         # Run the migration to test
         executor = MigrationExecutor(connection)
-        executor.loader.build_graph()
         executor.migrate(self.migrate_to)
         self.apps = executor.loader.project_state(self.migrate_to).apps
 
