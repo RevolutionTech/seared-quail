@@ -21,7 +21,7 @@ Seared Quail is under active development. Follow my progress [on Trello](https:/
 
 Seared Quail requires [PostgreSQL](http://www.postgresql.org/), pip, and libjpeg-dev, which you can install on debian with:
 
-    sudo apt-get install postgresql postgresql-contrib python-pip python-dev libpq-dev libjpeg-dev
+    sudo apt-get install postgresql postgresql-contrib python-pip python-dev libssl-dev libpq-dev libjpeg-dev
 
 I recommend using a virtual environment for Seared Quail. If you don't have it already, you can install [virtualenv](http://virtualenv.readthedocs.org/en/latest/virtualenv.html) and virtualenvwrapper globally with pip:
 
