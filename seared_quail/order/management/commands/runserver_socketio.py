@@ -1,5 +1,5 @@
 from re import match
-from thread import start_new_thread
+from threading import Thread
 from time import sleep
 from os import getpid, kill, environ
 from signal import SIGINT
@@ -51,19 +51,17 @@ class Command(BaseCommand):
         # to be set as the client-side default
         environ['DJANGO_SOCKETIO_PORT'] = str(self.port)
 
-        start_new_thread(reload_watcher, ())
+        Thread(target=reload_watcher).start()
         try:
-            bind = (self.addr, int(self.port))
-            print
-            print "SocketIOServer running on %s:%s" % bind
-            print
+            print("\nSocketIOServer running on {addr}:{port}\n".format(addr=self.addr, port=self.port))
             handler = self.get_handler(*args, **options)
+            bind = (self.addr, int(self.port))
             server = SocketIOServer(bind, handler, resource="socket.io", policy_server=True)
             server.serve_forever()
         except KeyboardInterrupt:
             if RELOAD:
                 server.stop()
-                print "Reloading..."
+                print("Reloading...")
                 restart_with_reloader()
             else:
                 raise

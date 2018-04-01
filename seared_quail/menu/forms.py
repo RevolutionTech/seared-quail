@@ -51,7 +51,7 @@ class MenuForm(forms.Form):
 
             # Collapse menu items into single key
             menuitems = []
-            for label, value in cleaned_data.items():
+            for label, value in list(cleaned_data.items()):
                 if label.startswith('quantity-'):
                     if value > 0:
                         menuitemid = int(label.split('-')[1])

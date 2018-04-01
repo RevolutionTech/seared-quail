@@ -20,7 +20,7 @@ class Category(OrderedModel):
     class Meta(OrderedModel.Meta):
         verbose_name_plural = "Categories"
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     def clean(self):
@@ -50,5 +50,5 @@ class MenuItem(OrderedModel):
     class Meta(OrderedModel.Meta):
         pass
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name

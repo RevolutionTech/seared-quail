@@ -77,7 +77,7 @@ class MenuView(FormView):
             )
 
         # Notify kitchen(s)
-        for connection_id, connection in _connections.iteritems():
+        for connection_id, connection in _connections.items():
             connection.emit('update')
 
         return super(MenuView, self).form_valid(form)
