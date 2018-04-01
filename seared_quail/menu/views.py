@@ -4,6 +4,7 @@
 
 """
 
+from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.views.generic.edit import FormView
 
@@ -43,7 +44,7 @@ class MenuView(FormView):
         return encoded_category
 
     def get_success_url(self):
-        return "{url}?success=1".format(url=reverse('menu'))
+        return reverse('menu')
 
     def get_context_data(self, **kwargs):
         context = super(MenuView, self).get_context_data(**kwargs)
@@ -57,8 +58,6 @@ class MenuView(FormView):
 
         context['menu'] = menu
         context['tables'] = Table.objects.all()
-        if self.request.GET.get('success', False):
-            context['success'] = True
 
         return context
 
@@ -78,5 +77,8 @@ class MenuView(FormView):
         # Notify kitchen(s)
         for connection_id, connection in _connections.items():
             connection.emit('update')
+
+        # Write success message to session
+        messages.success(self.request, "Your order has been placed.")
 
         return super(MenuView, self).form_valid(form)
