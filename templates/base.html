@@ -14,7 +14,6 @@
         <script type="text/javascript" src="{% static "js/foundation.min.js" %}"></script>
         {% block jsincludes %}{% endblock %}
         <script type="text/javascript">{% block jsvariables %}{% endblock %}</script>
-        <script type="text/javascript" src="{% block javascript %}{% endblock %}"></script>
     </head>
     <body>
         <div class="container" style="padding: 10px;">
@@ -22,5 +21,6 @@
             {% endblock %}
         </div>
         <script type="text/javascript">$(document).foundation();</script>
+        <script type="text/javascript" src="{% block javascript %}{% endblock %}"></script>
     </body>
 </html>
