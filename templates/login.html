@@ -5,7 +5,7 @@
 
 {% block content %}
 <h3 style="margin-bottom: 30px;">Login</h3>
-<form role="form" action="{% url 'login' %}{% if redirect_url %}?next={{ redirect_url }}{% endif %}" method="POST">
+<form role="form" method="POST">
     {% csrf_token %}
     {{ form.non_field_errors }}
     {{ form.username.errors }}

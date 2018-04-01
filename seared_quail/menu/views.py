@@ -42,9 +42,8 @@ class MenuView(FormView):
             })
         return encoded_category
 
-    def dispatch(self, request):
-        self.success_url = reverse('menu') + '?success=1'
-        return super(MenuView, self).dispatch(request)
+    def get_success_url(self):
+        return "{url}?success=1".format(url=reverse('menu'))
 
     def get_context_data(self, **kwargs):
         context = super(MenuView, self).get_context_data(**kwargs)

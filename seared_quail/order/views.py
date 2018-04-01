@@ -46,14 +46,8 @@ class LoginView(FormView):
     template_name = 'login.html'
     form_class = LoginForm
 
-    def dispatch(self, request):
-        self.success_url = request.GET.get('next', reverse('kitchen'))
-        return super(LoginView, self).dispatch(request)
-
-    def get_context_data(self, **kwargs):
-        context = super(LoginView, self).get_context_data(**kwargs)
-        context['redirect_url'] = self.success_url
-        return context
+    def get_success_url(self):
+        return self.request.GET.get('next', reverse('kitchen'))
 
     def form_valid(self, form):
         d = form.cleaned_data
