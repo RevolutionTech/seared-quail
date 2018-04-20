@@ -8,9 +8,8 @@ from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.views.generic.edit import FormView
 
-
-from menu.models import Category
 from menu.forms import MenuForm
+from menu.models import Category
 from order.models import Order, OrderMenuItem
 from order.sockets import _connections
 from restaurant.models import Table
