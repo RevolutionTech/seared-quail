@@ -5,7 +5,7 @@
 """
 
 from django.contrib import messages
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.views.generic.edit import FormView
 
 from menu.forms import MenuForm
