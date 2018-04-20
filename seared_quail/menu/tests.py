@@ -26,7 +26,7 @@ class MenuItemInitialOrdersMigrationTestCase(MigrationTestCase):
     def testInstancesHaveInitialOrder(self):
         MenuItem = self.apps.get_model('menu', 'MenuItem')
         menuitem = MenuItem.objects.get(id=self.premigration_menuitem.id)
-        self.assertEquals(menuitem.order, menuitem.id)
+        self.assertEqual(menuitem.order, menuitem.id)
 
 
 class CategoryInitialOrdersMigrationTestCase(MigrationTestCase):
@@ -41,7 +41,7 @@ class CategoryInitialOrdersMigrationTestCase(MigrationTestCase):
     def testCategoriesHaveInitialOrder(self):
         Category = self.apps.get_model('menu', 'Category')
         category = Category.objects.get(id=self.premigration_category.id)
-        self.assertEquals(category.order, category.id)
+        self.assertEqual(category.order, category.id)
 
 
 class MenuAdminWebTestCase(SearedQuailTestCase):

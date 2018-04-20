@@ -65,7 +65,7 @@ class OrderWebTestCase(SearedQuailTestCase):
     def testMarkOrderComplete(self):
         num_pending_orders = Order.objects.filter(completed__isnull=True).count()
         self.assertResponseRenders('/kitchen/completeorder/', method='POST', data={'order': self.order.id})
-        self.assertEquals(Order.objects.filter(completed__isnull=True).count(), num_pending_orders - 1)
+        self.assertEqual(Order.objects.filter(completed__isnull=True).count(), num_pending_orders - 1)
 
     def testMarkInvalidOrderCompleteFails(self):
         invalid_order_id = Order.objects.all().order_by('-id')[0].id + 1
