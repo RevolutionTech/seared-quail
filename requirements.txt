@@ -5,7 +5,7 @@ psycogreen==1.0
 gunicorn==19.8.1
 Django==1.11.11
 django-pigeon==0.3.0
-django-ordered-model==1.4.3
+django-ordered-model==2.0.0
 Pillow==5.1.0
 django-classbasedsettings==1.5.0
 -e git://github.com/abourget/gevent-socketio.git@1cdb1594a315326987a17ce0924ea448a82fab01#egg=gevent_socketio-master
