@@ -3,7 +3,7 @@ gevent==1.3.6
 psycopg2==2.7.5
 psycogreen==1.0
 gunicorn==19.8.1
-Django==1.11.15
+Django==2.1.2
 django-pigeon==0.3.0
 django-ordered-model==2.1.0
 Pillow==5.2.0
