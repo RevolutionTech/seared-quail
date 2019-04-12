@@ -3,7 +3,6 @@
 [![Build Status](https://travis-ci.org/RevolutionTech/seared-quail.svg?branch=master)](https://travis-ci.org/RevolutionTech/seared-quail)
 [![codecov](https://codecov.io/gh/RevolutionTech/seared-quail/branch/master/graph/badge.svg)](https://codecov.io/gh/RevolutionTech/seared-quail)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/bf08621ec3d54837b3d64f8e880f6d9e)](https://www.codacy.com/app/RevolutionTech/seared-quail)
-[![Updates](https://pyup.io/repos/github/RevolutionTech/seared-quail/shield.svg)](https://pyup.io/repos/github/RevolutionTech/seared-quail/)
 
 ![Seared Quail](https://revolutiontech.s3.amazonaws.com/media/img/searedquail1.png)
 
@@ -19,27 +18,15 @@ Seared Quail is under active development. Follow my progress [on Trello](https:/
 
 ### Prerequisites
 
-Seared Quail requires [PostgreSQL](http://www.postgresql.org/), pip, and libjpeg-dev, which you can install on debian with:
+Seared Quail requires [PostgreSQL](http://www.postgresql.org/), libjpeg-dev, and Python header files, which you can install on debian with:
 
-    sudo apt-get install postgresql postgresql-contrib python-pip python3-dev libssl-dev libpq-dev libjpeg-dev
-
-I recommend using a virtual environment for Seared Quail. If you don't have it already, you can install [virtualenv](http://virtualenv.readthedocs.org/en/latest/virtualenv.html) and virtualenvwrapper globally with pip:
-
-    sudo pip install virtualenv virtualenvwrapper
-
-[Update your .profile or .bashrc file](http://virtualenvwrapper.readthedocs.org/en/latest/install.html#shell-startup-file) to create new environment variables for virtualenvwrapper and then create and activate your virtual environment with:
-
-    mkvirtualenv seared-quail
-
-In the future you can reactivate the virtual environment with:
-
-    workon seared-quail
+    sudo apt-get install postgresql postgresql-contrib python3-dev libssl-dev libpq-dev libjpeg-dev
 
 ### Installation
 
-Then in your virtual environment, you will need to install Python dependencies such as [gevent](http://www.gevent.org/), psycopg2, psycogreen, [Gunicorn](http://gunicorn.org/), [django](https://www.djangoproject.com/), django-ordered-model, [pillow](https://pillow.readthedocs.org/), and django-classbasedsettings. You can do this simply with the command:
+Use [poetry](https://github.com/sdispater/poetry) to install Python dependencies:
 
-    pip install -r requirements.txt
+    poetry install
 
 ### Configuration
 
@@ -64,7 +51,7 @@ Of course you should [generate your own secret key](http://stackoverflow.com/a/1
 
 With everything installed and all files in place, you may now create the database tables. You can do this with:
 
-    python manage.py migrate
+    poetry run python manage.py migrate
 
 ### Deployment
 
