@@ -5,7 +5,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/bf08621ec3d54837b3d64f8e880f6d9e)](https://www.codacy.com/app/RevolutionTech/seared-quail)
 [![Updates](https://pyup.io/repos/github/RevolutionTech/seared-quail/shield.svg)](https://pyup.io/repos/github/RevolutionTech/seared-quail/)
 
-![Seared Quail](http://revolutiontech.ca/media/img/searedquail1.png)
+![Seared Quail](https://revolutiontech.s3.amazonaws.com/media/img/searedquail1.png)
 
 ***
 
