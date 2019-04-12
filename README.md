@@ -121,7 +121,7 @@ And in this file, generate a configuration similar to the following:
         }
 
         location /favicon.ico {
-            alias /home/lucas/seared-quail/media/favicon.ico;
+            alias /home/lucas/seared-quail/static/favicon.ico;
         }
 
         location / {
