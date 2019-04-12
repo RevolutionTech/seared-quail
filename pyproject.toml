@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "seared-quail"
+version = "0.1.0"
+description = "A digital restaurant menu web application."
+authors = ["Lucas Connors <lucas@revolutiontech.ca>"]
+license = "ISC"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+Django = "~2.1.7"
+gunicorn = "^19.9.0"
+psycopg2 = "=2.7.7"
+gevent = "^1.4.0"
+psycogreen = "^1.0.1"
+Pillow = "^5.4.1"
+django-classbasedsettings = "^1.5.0"
+django-ordered-model = "^3.1.1"
+gevent-socketio = {git = "https://github.com/abourget/gevent-socketio.git", rev = "1cdb1594a315326987a17ce0924ea448a82fab01"}
+
+[tool.poetry.dev-dependencies]
+coverage = "^4.5.3"
+django-pigeon = "^0.3.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
