@@ -134,7 +134,7 @@ In this file, create a script similar to the following:
 
     #!/bin/sh
 
-    GUNICORN=/home/lucas/.virtualenvs/seared-quail/bin/gunicorn
+    GUNICORN=/home/lucas/.cache/pypoetry/virtualenvs/seared-quail-py3.6/bin/gunicorn
     ROOT=/home/lucas/seared-quail/seared_quail
     PID=/var/run/gunicorn.pid
 
