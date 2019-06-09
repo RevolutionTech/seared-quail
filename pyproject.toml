@@ -7,7 +7,7 @@ license = "ISC"
 
 [tool.poetry.dependencies]
 python = "^3.6"
-Django = "~2.2.1"
+Django = "~2.2.2"
 gunicorn = "^19.9.0"
 psycopg2 = "^2.8.2"
 gevent = "^1.4.0"
