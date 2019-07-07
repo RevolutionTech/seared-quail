@@ -12,7 +12,7 @@ gunicorn = "^19.9.0"
 psycopg2 = "^2.8.3"
 gevent = "^1.4.0"
 psycogreen = "^1.0.1"
-Pillow = "^6.0.0"
+Pillow = "^6.1.0"
 django-classbasedsettings = "^1.5.0"
 django-ordered-model = "^3.1.1"
 gevent-socketio = {git = "https://github.com/abourget/gevent-socketio.git", rev = "1cdb1594a315326987a17ce0924ea448a82fab01"}
