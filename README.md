@@ -18,9 +18,7 @@ Seared Quail is under active development. Follow my progress [on Trello](https:/
 
 ### Prerequisites
 
-Seared Quail requires [PostgreSQL](http://www.postgresql.org/), libjpeg-dev, and Python header files, which you can install on debian with:
-
-    sudo apt-get install postgresql postgresql-contrib python3-dev libssl-dev libpq-dev libjpeg-dev
+Seared Quail requires [PostgreSQL](https://www.postgresql.org/) to be installed.
 
 ### Installation
 
@@ -64,6 +62,8 @@ In the production environment, you'll need to create a different dev settings co
         ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'mydomain.com']
 
 Alternatively, you may choose to merge your production `dev.py` file into `prod.py`. In that case, be sure to subclass `BaseSettings` instead of `DevSettings` and make sure all definitions from `dev.py` are in `prod.py`.
+
+###### Note: The remainder of this section assumes that Seared Quail is deployed in a Debian Linux environment.
 
 Since Seared Quail uses websockets, Apache with mod_wsgi is not a valid production setup. Instead, we will use Gunicorn with [runit](http://smarden.org/runit/) and [Nginx](http://nginx.org/). You can install them with the following:
 
