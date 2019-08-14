@@ -28,24 +28,7 @@ Use [poetry](https://github.com/sdispater/poetry) to install Python dependencies
 
 ### Configuration
 
-Next we will need to create a file in the settings directory called `dev.py`. This is where we will store all of the settings that are specific to your instance of Seared Quail. Most of these settings should be only known to you. Your file should subclass BaseSettings from `base.py` and then define a secret key and the database credentials. Your `dev.py` file might look something like:
-
-    from seared_quail.settings.base import BaseSettings
-
-    class DevSettings(BaseSettings):
-        SECRET_KEY = '-3f5yh&(s5%9uigtx^yn=t_woj0@90__fr!t2b*96f5xoyzb%b'
-        DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.postgresql_psycopg2',
-                'NAME': 'seared_quail',
-                'USER': 'postgres',
-                'PASSWORD': 'abc123',
-                'HOST': 'localhost',
-                'PORT': '5432',
-            },
-        }
-
-Of course you should [generate your own secret key](http://stackoverflow.com/a/16630719) and use a more secure password for your database. If you like, you can override more of Django settings here. If you do not create this file, you will get a `cbsettings.exceptions.NoMatchingSettings` exception when starting the server.
+Seared Quail uses [python-dotenv](https://github.com/theskumar/python-dotenv) to read environment variables in from your local `.env` file. See `.env-sample` for configuration options. Be sure to [generate your own secret key](http://stackoverflow.com/a/16630719).
 
 With everything installed and all files in place, you may now create the database tables. You can do this with:
 
@@ -53,15 +36,7 @@ With everything installed and all files in place, you may now create the databas
 
 ### Deployment
 
-In the production environment, you'll need to create a different dev settings configuration file. It will be similar to the one above, except that you will be using production keys and secrets instead of development keys. In addition, you will need to create a `prod.py` file, similar to your `dev.py` file, but this one will contain settings only relevant to production. It may be best to subclass the `DevSettings` class you created, in order to get something like this:
-
-    from seared_quail.settings.dev import DevSettings
-
-    class ProdSettings(DevSettings):
-        DEBUG = False
-        ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'mydomain.com']
-
-Alternatively, you may choose to merge your production `dev.py` file into `prod.py`. In that case, be sure to subclass `BaseSettings` instead of `DevSettings` and make sure all definitions from `dev.py` are in `prod.py`.
+Before deploying, you will need to add some additional environment variables to your `.env` file. See `prod.py` for the environment variables used in production.
 
 ###### Note: The remainder of this section assumes that Seared Quail is deployed in a Debian Linux environment.
 

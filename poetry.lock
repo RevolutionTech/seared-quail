@@ -98,6 +98,7 @@ six = "*"
 reference = "1cdb1594a315326987a17ce0924ea448a82fab01"
 type = "git"
 url = "https://github.com/abourget/gevent-socketio.git"
+
 [[package]]
 category = "main"
 description = "Websocket handler for the gevent pywsgi server, a Python network library"
@@ -161,6 +162,14 @@ version = "2.19"
 
 [[package]]
 category = "main"
+description = "Add .env support to your django/flask apps in development and deployments"
+name = "python-dotenv"
+optional = false
+python-versions = "*"
+version = "0.10.3"
+
+[[package]]
+category = "main"
 description = "World timezone definitions, modern and historical"
 name = "pytz"
 optional = false
@@ -176,7 +185,7 @@ python-versions = ">=2.6, !=3.0.*, !=3.1.*"
 version = "1.12.0"
 
 [metadata]
-content-hash = "94eb85a1c631f71e1b9e560768efd3613b69d82f0c0e0762e8c902be1c5cc72d"
+content-hash = "56bab66035cc2a8f827b126b2de674a1e02dbc52ae6939e0f6ac3a08ad790680"
 python-versions = "^3.6"
 
 [metadata.hashes]
@@ -196,5 +205,6 @@ pillow = ["0804f77cb1e9b6dbd37601cee11283bba39a8d44b9ddb053400c58e0c0d7d9de", "0
 psycogreen = ["86fe2a066d99526b3cff74ca45fd265b5b412a570195488603e298266e91be17"]
 psycopg2 = ["128d0fa910ada0157bba1cb74a9c5f92bb8a1dca77cf91a31eb274d1f889e001", "227fd46cf9b7255f07687e5bde454d7d67ae39ca77e170097cdef8ebfc30c323", "2315e7f104681d498ccf6fd70b0dba5bce65d60ac92171492bfe228e21dcc242", "4b5417dcd2999db0f5a891d54717cfaee33acc64f4772c4bc574d4ff95ed9d80", "640113ddc943522aaf71294e3f2d24013b0edd659b7820621492c9ebd3a2fb0b", "897a6e838319b4bf648a574afb6cabcb17d0488f8c7195100d48d872419f4457", "8dceca81409898c870e011c71179454962dec152a1a6b86a347f4be74b16d864", "b1b8e41da09a0c3ef0b3d4bb72da0dde2abebe583c1e8462973233fd5ad0235f", "cb407fccc12fc29dc331f2b934913405fa49b9b75af4f3a72d0f50f57ad2ca23", "d3a27550a8185e53b244ad7e79e307594b92fede8617d80200a8cce1fba2c60f", "f0e6b697a975d9d3ccd04135316c947dd82d841067c7800ccf622a8717e98df1"]
 pycparser = ["a988718abfad80b6b157acce7bf130a30876d27603738ac39f140993246b25b3"]
+python-dotenv = ["debd928b49dbc2bf68040566f55cdb3252458036464806f4094487244e2a4093", "f157d71d5fec9d4bd5f51c82746b6344dffa680ee85217c123f4a0c8117c4544"]
 pytz = ["26c0b32e437e54a18161324a2fca3c4b9846b74a8dccddd843113109e1116b32", "c894d57500a4cd2d5c71114aaab77dbab5eabd9022308ce5ac9bb93a60a6f0c7"]
 six = ["3350809f0555b11f552448330d0b52d5f24c91a322ea4a15ef22629740f3761c", "d16a0141ec1a18405cd4ce8b4613101da75da0e9a7aec5bdd4fa804d0e0eba73"]

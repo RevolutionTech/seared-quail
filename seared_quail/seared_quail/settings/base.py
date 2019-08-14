@@ -14,6 +14,7 @@ class BaseSettings(DjangoDefaults):
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
     TOP_DIR = os.path.dirname(BASE_DIR)
 
+    SECRET_KEY = os.environ["SEARED_QUAIL_SECRET_KEY"]
     DEBUG = True
     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
@@ -61,11 +62,11 @@ class BaseSettings(DjangoDefaults):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'seared_quail',
-            'USER': 'postgres',
-            'PASSWORD': '',
-            'HOST': 'localhost',
-            'PORT': '',
+            'NAME': os.environ["SEARED_QUAIL_DB_NAME"],
+            'USER': os.environ["SEARED_QUAIL_DB_USER"],
+            'PASSWORD': os.environ["SEARED_QUAIL_DB_PASSWORD"],
+            'HOST': os.environ["SEARED_QUAIL_DB_HOST"],
+            'PORT': '5432',
         },
     }
 

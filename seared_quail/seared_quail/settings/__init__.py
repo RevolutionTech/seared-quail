@@ -9,20 +9,10 @@ import os
 
 from cbsettings import switcher
 
-from seared_quail.settings.travis import TravisSettings
+from seared_quail.settings.base import BaseSettings
+from seared_quail.settings.prod import ProdSettings
 
 
-SETTINGS_DIR = os.path.dirname(__file__)
-
-dev_settings_exists = os.path.isfile(os.path.join(SETTINGS_DIR, 'dev.py'))
-prod_settings_exists = os.path.isfile(os.path.join(SETTINGS_DIR, 'prod.py'))
-
-switcher.register(TravisSettings, 'TRAVIS' in os.environ)
-
-if dev_settings_exists:
-    from seared_quail.settings.dev import DevSettings
-    switcher.register(DevSettings, dev_settings_exists and not prod_settings_exists)
-
-if prod_settings_exists:
-    from seared_quail.settings.prod import ProdSettings
-    switcher.register(ProdSettings, prod_settings_exists)
+stage = os.environ.get("SEARED_QUAIL_STAGE", "dev")
+switcher.register(BaseSettings, stage == "dev")
+switcher.register(ProdSettings, stage == "production")
