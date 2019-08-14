@@ -12,6 +12,7 @@ install:
 
 before_script:
   - psql -c "CREATE DATABASE seared_quail;" -U postgres
+  - cp .env-sample .env
 
 script:
   - cd seared_quail

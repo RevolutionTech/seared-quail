@@ -16,6 +16,7 @@ Pillow = "^6.1.0"
 django-classbasedsettings = "^1.5.0"
 django-ordered-model = "^3.3.0"
 gevent-socketio = {git = "https://github.com/abourget/gevent-socketio.git", rev = "1cdb1594a315326987a17ce0924ea448a82fab01"}
+python-dotenv = "^0.10.3"
 
 [tool.poetry.dev-dependencies]
 coverage = "^4.5.4"
