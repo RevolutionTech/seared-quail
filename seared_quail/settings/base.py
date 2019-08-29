@@ -12,7 +12,6 @@ from cbsettings import DjangoDefaults
 class BaseSettings(DjangoDefaults):
 
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-    TOP_DIR = os.path.dirname(BASE_DIR)
 
     SECRET_KEY = os.environ["SEARED_QUAIL_SECRET_KEY"]
     DEBUG = True
@@ -44,7 +43,7 @@ class BaseSettings(DjangoDefaults):
     TEMPLATES = [
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
-            'DIRS': [os.path.join(TOP_DIR, 'templates')],
+            'DIRS': [os.path.join(BASE_DIR, 'templates')],
             'APP_DIRS': True,
             'OPTIONS': {
                 'context_processors': [
@@ -76,11 +75,11 @@ class BaseSettings(DjangoDefaults):
     USE_TZ = True
 
     # Templates and static files (CSS, JavaScript, Images)
-    MEDIA_ROOT = os.path.join(TOP_DIR, 'media')
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
     MEDIA_URL = '/media/'
     STATIC_URL = '/static/'
     STATICFILES_DIRS = (
-        os.path.join(TOP_DIR, 'static'),
+        os.path.join(BASE_DIR, 'static'),
     )
 
     # Authentication

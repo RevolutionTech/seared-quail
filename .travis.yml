@@ -15,7 +15,6 @@ before_script:
   - cp .env-sample .env
 
 script:
-  - cd seared_quail
   - poetry run python manage.py migrate
   - poetry run coverage run ./manage.py test
 
