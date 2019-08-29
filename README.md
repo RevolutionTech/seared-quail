@@ -110,7 +110,7 @@ In this file, create a script similar to the following:
     #!/bin/sh
 
     GUNICORN=/home/lucas/.cache/pypoetry/virtualenvs/seared-quail-py3.6/bin/gunicorn
-    ROOT=/home/lucas/seared-quail/seared_quail
+    ROOT=/home/lucas/seared-quail
     PID=/var/run/gunicorn.pid
 
     APP=seared_quail.wsgi:application
