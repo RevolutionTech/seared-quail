@@ -50,12 +50,12 @@ class LoginForm(forms.Form):
         cleaned_data = super(LoginForm, self).clean()
 
         if not self.errors:
-            email_or_username = cleaned_data.get('username')
-            password = cleaned_data.get('password')
+            email_or_username = cleaned_data.get("username")
+            password = cleaned_data.get("password")
             user = self.user_from_email_or_username(email_or_username)
             if user and user.check_password(password):
-                cleaned_data['email'] = user.email
-                cleaned_data['username'] = user.username
+                cleaned_data["email"] = user.email
+                cleaned_data["username"] = user.username
             else:
                 raise forms.ValidationError(self.FAILED_AUTH_WARNING)
 
@@ -67,7 +67,7 @@ class OrderCompleteForm(forms.Form):
     order = forms.IntegerField(min_value=1)
 
     def clean_order(self):
-        orderid = self.cleaned_data['order']
+        orderid = self.cleaned_data["order"]
         try:
             order = Order.objects.get(id=orderid)
         except Order.DoesNotExist:

@@ -4,18 +4,24 @@ from django.db import models, migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Table',
+            name="Table",
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('number', models.CharField(max_length=6)),
+                (
+                    "id",
+                    models.AutoField(
+                        verbose_name="ID",
+                        serialize=False,
+                        auto_created=True,
+                        primary_key=True,
+                    ),
+                ),
+                ("number", models.CharField(max_length=6)),
             ],
-            options={
-            },
+            options={},
             bases=(models.Model,),
-        ),
+        )
     ]

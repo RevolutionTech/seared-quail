@@ -4,31 +4,47 @@ from django.db import models, migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Category',
+            name="Category",
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('name', models.CharField(max_length=30)),
-                ('description', models.TextField(null=True, blank=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        verbose_name="ID",
+                        serialize=False,
+                        auto_created=True,
+                        primary_key=True,
+                    ),
+                ),
+                ("name", models.CharField(max_length=30)),
+                ("description", models.TextField(null=True, blank=True)),
             ],
-            options={
-            },
+            options={},
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='MenuItem',
+            name="MenuItem",
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('name', models.CharField(max_length=30)),
-                ('description', models.TextField(null=True, blank=True)),
-                ('category', models.ForeignKey(to='menu.Category', on_delete=models.CASCADE)),
+                (
+                    "id",
+                    models.AutoField(
+                        verbose_name="ID",
+                        serialize=False,
+                        auto_created=True,
+                        primary_key=True,
+                    ),
+                ),
+                ("name", models.CharField(max_length=30)),
+                ("description", models.TextField(null=True, blank=True)),
+                (
+                    "category",
+                    models.ForeignKey(to="menu.Category", on_delete=models.CASCADE),
+                ),
             ],
-            options={
-            },
+            options={},
             bases=(models.Model,),
         ),
     ]

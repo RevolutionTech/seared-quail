@@ -25,38 +25,45 @@ def reload_watcher():
 
 
 class Command(BaseCommand):
-
     def add_arguments(self, parser):
         try:
             default_port = settings.SOCKETIO_PORT
         except AttributeError:
-            default_port = '8000'
+            default_port = "8000"
 
         parser.add_argument(
-            'addrport',
-            nargs='?',
+            "addrport",
+            nargs="?",
             default="0.0.0.0:{port}".format(port=default_port),
-            help="Specify the address and port used by the SocketIOServer"
+            help="Specify the address and port used by the SocketIOServer",
         )
 
     def handle(self, *args, **options):
-        addrport = options['addrport']
+        addrport = options["addrport"]
         m = match(naiveip_re, addrport)
         if m is None:
-            raise CommandError("%s is not a valid port number or address:port pair." % addrport)
+            raise CommandError(
+                "%s is not a valid port number or address:port pair." % addrport
+            )
 
         self.addr, _, _, _, self.port = m.groups()
 
         # Make the port available allowing the port
         # to be set as the client-side default
-        environ['DJANGO_SOCKETIO_PORT'] = str(self.port)
+        environ["DJANGO_SOCKETIO_PORT"] = str(self.port)
 
         Thread(target=reload_watcher).start()
         try:
-            print("\nSocketIOServer running on {addr}:{port}\n".format(addr=self.addr, port=self.port))
+            print(
+                "\nSocketIOServer running on {addr}:{port}\n".format(
+                    addr=self.addr, port=self.port
+                )
+            )
             handler = self.get_handler(*args, **options)
             bind = (self.addr, int(self.port))
-            server = SocketIOServer(bind, handler, resource="socket.io", policy_server=True)
+            server = SocketIOServer(
+                bind, handler, resource="socket.io", policy_server=True
+            )
             server.serve_forever()
         except KeyboardInterrupt:
             if RELOAD:
@@ -75,8 +82,12 @@ class Command(BaseCommand):
             from django.contrib.staticfiles.handlers import StaticFilesHandler
         except ImportError:
             return handler
-        use_static_handler = options.get('use_static_handler', True)
-        insecure_serving = options.get('insecure_serving', False)
-        if (settings.DEBUG and use_static_handler or (use_static_handler and insecure_serving)):
+        use_static_handler = options.get("use_static_handler", True)
+        insecure_serving = options.get("insecure_serving", False)
+        if (
+            settings.DEBUG
+            and use_static_handler
+            or (use_static_handler and insecure_serving)
+        ):
             handler = StaticFilesHandler(handler)
         return handler

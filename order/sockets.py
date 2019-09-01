@@ -8,7 +8,6 @@ _connections = {}
 
 @namespace("/kitchen")
 class KitchenNamespace(BaseNamespace, BroadcastMixin):
-
     def initialize(self, *args, **kwargs):
         _connections[id(self)] = self
         super(KitchenNamespace, self).initialize(*args, **kwargs)
