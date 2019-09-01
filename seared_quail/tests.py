@@ -19,21 +19,23 @@ from restaurant.models import Table
 
 class SearedQuailTestCase(RenderTestCase):
 
-    USER_USERNAME = 'jsmith'
-    USER_EMAIL = 'jsmith@example.com'
-    USER_PASSWORD = 'abc123'
+    USER_USERNAME = "jsmith"
+    USER_EMAIL = "jsmith@example.com"
+    USER_PASSWORD = "abc123"
 
-    CATEGORY_NAME = 'Drinks'
-    SUBCATEGORY_NAME = 'Soda'
-    MENU_ITEM_NAME = 'Water'
-    MENU_ITEM_IN_SUBCATEGORY_NAME = 'Cola'
-    TABLE_NUMBER = 'A-1'
+    CATEGORY_NAME = "Drinks"
+    SUBCATEGORY_NAME = "Soda"
+    MENU_ITEM_NAME = "Water"
+    MENU_ITEM_IN_SUBCATEGORY_NAME = "Cola"
+    TABLE_NUMBER = "A-1"
 
     def setUp(self):
         super(SearedQuailTestCase, self).setUp()
 
         # Create admin user
-        self.user = User.objects.create_user(self.USER_USERNAME, email=self.USER_EMAIL, password=self.USER_PASSWORD)
+        self.user = User.objects.create_user(
+            self.USER_USERNAME, email=self.USER_EMAIL, password=self.USER_PASSWORD
+        )
         self.user.is_staff = True
         self.user.is_superuser = True
         self.user.save()
@@ -41,11 +43,14 @@ class SearedQuailTestCase(RenderTestCase):
 
         # Create initial instances
         self.category = Category.objects.create(name=self.CATEGORY_NAME)
-        self.menu_item = MenuItem.objects.create(category=self.category, name=self.MENU_ITEM_NAME)
-        self.subcategory = Category.objects.create(name=self.SUBCATEGORY_NAME, parent=self.category)
+        self.menu_item = MenuItem.objects.create(
+            category=self.category, name=self.MENU_ITEM_NAME
+        )
+        self.subcategory = Category.objects.create(
+            name=self.SUBCATEGORY_NAME, parent=self.category
+        )
         self.menu_item_in_subcategory = MenuItem.objects.create(
-            category=self.subcategory,
-            name=self.MENU_ITEM_IN_SUBCATEGORY_NAME
+            category=self.subcategory, name=self.MENU_ITEM_IN_SUBCATEGORY_NAME
         )
         self.table = Table.objects.create(number=self.TABLE_NUMBER)
 
@@ -95,12 +100,9 @@ class MigrationTestCase(TransactionTestCase):
 
 
 class AdminWebTestCase(SearedQuailTestCase):
-
     def get200s(self):
-        return [
-            '/admin/',
-        ]
+        return ["/admin/"]
 
     def testAdminLoginPageRenders(self):
         self.client.logout()
-        self.assertResponseRedirects('/admin/', '/admin/login/')
+        self.assertResponseRedirects("/admin/", "/admin/login/")

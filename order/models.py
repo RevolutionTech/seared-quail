@@ -18,9 +18,12 @@ class Order(models.Model):
 
     def encodeJSON(self):
         return {
-            'id': self.id,
-            'table': self.table.number,
-            'items': [ordermenuitem.encodeJSON() for ordermenuitem in self.ordermenuitem_set.all()],
+            "id": self.id,
+            "table": self.table.number,
+            "items": [
+                ordermenuitem.encodeJSON()
+                for ordermenuitem in self.ordermenuitem_set.all()
+            ],
         }
 
 
@@ -33,7 +36,7 @@ class OrderMenuItem(models.Model):
 
     def encodeJSON(self):
         return {
-            'quantity': self.quantity,
-            'name': self.menuitem.name,
-            'note': self.note,
+            "quantity": self.quantity,
+            "name": self.menuitem.name,
+            "note": self.note,
         }

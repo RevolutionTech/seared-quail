@@ -18,6 +18,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "seared_quail.settings")
-cbsettings.configure('seared_quail.settings.switcher')
+cbsettings.configure("seared_quail.settings.switcher")
 
 application = get_wsgi_application()

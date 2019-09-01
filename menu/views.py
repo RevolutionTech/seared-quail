@@ -17,7 +17,7 @@ from restaurant.models import Table
 
 class MenuView(FormView):
 
-    template_name = 'menu.html'
+    template_name = "menu.html"
     form_class = MenuForm
 
     @classmethod
@@ -31,32 +31,36 @@ class MenuView(FormView):
             if encoded_subcategory:
                 subcategories.append(encoded_subcategory)
         if subcategories:
-            encoded_category['subcategories'] = subcategories
+            encoded_category["subcategories"] = subcategories
 
         # Encode this category
         if category.menuitem_set.filter(show_in_menu=True).exists():
-            encoded_category.update({
-                'name': category.name,
-                'description': category.description,
-                'menuitems': category.menuitem_set.filter(show_in_menu=True).order_by('order'),
-            })
+            encoded_category.update(
+                {
+                    "name": category.name,
+                    "description": category.description,
+                    "menuitems": category.menuitem_set.filter(
+                        show_in_menu=True
+                    ).order_by("order"),
+                }
+            )
         return encoded_category
 
     def get_success_url(self):
-        return reverse('menu')
+        return reverse("menu")
 
     def get_context_data(self, **kwargs):
         context = super(MenuView, self).get_context_data(**kwargs)
 
         # Collect menu items
         menu = []
-        for category in Category.objects.filter(parent__isnull=True).order_by('order'):
+        for category in Category.objects.filter(parent__isnull=True).order_by("order"):
             encoded_category = self.encode_category(category)
             if encoded_category:
                 menu.append(encoded_category)
 
-        context['menu'] = menu
-        context['tables'] = Table.objects.all()
+        context["menu"] = menu
+        context["tables"] = Table.objects.all()
 
         return context
 
@@ -64,18 +68,18 @@ class MenuView(FormView):
         d = form.cleaned_data
 
         # Place the order
-        order = Order.objects.create(table=d['table'])
-        for menuitem in d['menuitems']:
+        order = Order.objects.create(table=d["table"])
+        for menuitem in d["menuitems"]:
             OrderMenuItem.objects.create(
                 order=order,
-                menuitem=menuitem['menuitem'],
-                quantity=menuitem['quantity'],
-                note=menuitem['note']
+                menuitem=menuitem["menuitem"],
+                quantity=menuitem["quantity"],
+                note=menuitem["note"],
             )
 
         # Notify kitchen(s)
         for connection_id, connection in _connections.items():
-            connection.emit('update')
+            connection.emit("update")
 
         # Write success message to session
         messages.success(self.request, "Your order has been placed.")
