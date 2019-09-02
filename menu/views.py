@@ -50,7 +50,7 @@ class MenuView(FormView):
         return reverse("menu")
 
     def get_context_data(self, **kwargs):
-        context = super(MenuView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
 
         # Collect menu items
         menu = []
@@ -84,4 +84,4 @@ class MenuView(FormView):
         # Write success message to session
         messages.success(self.request, "Your order has been placed.")
 
-        return super(MenuView, self).form_valid(form)
+        return super().form_valid(form)

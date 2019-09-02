@@ -12,16 +12,12 @@ from restaurant.models import Table
 
 class MenuForm(forms.Form):
     def __init__(self, *args, **kwargs):
-        super(MenuForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         # Create a field for each menu item
         for menuitem in MenuItem.objects.filter(user_can_order=True):
-            self.fields["quantity-{id_}".format(id_=menuitem.id)] = forms.IntegerField(
-                min_value=0
-            )
-            self.fields["note-{id_}".format(id_=menuitem.id)] = forms.CharField(
-                required=False
-            )
+            self.fields[f"quantity-{menuitem.id}"] = forms.IntegerField(min_value=0)
+            self.fields[f"note-{menuitem.id}"] = forms.CharField(required=False)
 
     table = forms.IntegerField()
 
@@ -46,7 +42,7 @@ class MenuForm(forms.Form):
                 )
 
     def clean(self):
-        cleaned_data = super(MenuForm, self).clean()
+        cleaned_data = super().clean()
 
         if not self.errors:
             # Check for menu items that have been removed since the form was loaded
@@ -59,7 +55,7 @@ class MenuForm(forms.Form):
                     if value > 0:
                         menuitemid = int(label.split("-")[1])
                         menuitem = MenuItem.objects.get(id=menuitemid)
-                        note = cleaned_data["note-{id_}".format(id_=menuitemid)]
+                        note = cleaned_data[f"note-{menuitemid}"]
                         menuitems.append(
                             {"menuitem": menuitem, "quantity": value, "note": note}
                         )

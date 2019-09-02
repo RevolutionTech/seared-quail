@@ -17,7 +17,7 @@ class CategoryAdmin(OrderedModelAdmin):
 
 class MenuItemAdminForm(forms.ModelForm):
     def clean(self):
-        cleaned_data = super(MenuItemAdminForm, self).clean()
+        cleaned_data = super().clean()
 
         if not self.errors:
             # user_can_order and not show_in_menu is not allowed

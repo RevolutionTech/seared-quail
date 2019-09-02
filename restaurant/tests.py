@@ -13,5 +13,5 @@ class RestaurantAdminWebTestCase(SearedQuailTestCase):
             "/admin/restaurant/",
             "/admin/restaurant/table/",
             "/admin/restaurant/table/add/",
-            "/admin/restaurant/table/{table_id}/change/".format(table_id=self.table.id),
+            f"/admin/restaurant/table/{self.table.id}/change/",
         ]

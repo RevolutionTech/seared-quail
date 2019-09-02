@@ -112,7 +112,7 @@ class MenuWebTestCase(SearedQuailTestCase):
     def construct_initial_order_data(self):
         data = {"table": self.table.id}
         for menu_item in MenuItem.objects.all():
-            data["quantity-{menu_item_id}".format(menu_item_id=menu_item.id)] = 0
+            data[f"quantity-{menu_item.id}"] = 0
         return data
 
     def get200s(self):
@@ -124,7 +124,7 @@ class MenuWebTestCase(SearedQuailTestCase):
 
     def testPlaceOrder(self):
         data = self.construct_initial_order_data()
-        data["quantity-{menu_item_id}".format(menu_item_id=self.menu_item.id)] = 1
+        data[f"quantity-{self.menu_item.id}"] = 1
         self.assertResponseRenders("/")
         self.assertResponseRedirects("/", "/", method="POST", data=data)
 
@@ -138,7 +138,7 @@ class MenuWebTestCase(SearedQuailTestCase):
         # The user loads the menu and prepares an order
         self.assertResponseRenders("/")
         data = self.construct_initial_order_data()
-        data["quantity-{menu_item_id}".format(menu_item_id=self.menu_item.id)] = 1
+        data[f"quantity-{self.menu_item.id}"] = 1
 
         # Unfortunately, the item just became unavailable
         self.menu_item.user_can_order = False
