@@ -30,7 +30,7 @@ class SearedQuailTestCase(RenderTestCase):
     TABLE_NUMBER = "A-1"
 
     def setUp(self):
-        super(SearedQuailTestCase, self).setUp()
+        super().setUp()
 
         # Create admin user
         self.user = User.objects.create_user(

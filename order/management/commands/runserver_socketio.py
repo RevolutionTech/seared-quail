@@ -34,7 +34,7 @@ class Command(BaseCommand):
         parser.add_argument(
             "addrport",
             nargs="?",
-            default="0.0.0.0:{port}".format(port=default_port),
+            default=f"0.0.0.0:{default_port}",
             help="Specify the address and port used by the SocketIOServer",
         )
 

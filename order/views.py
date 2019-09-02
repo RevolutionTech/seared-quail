@@ -54,7 +54,7 @@ class LoginView(FormView):
         user = authenticate(username=username, password=password)
         if user:
             auth_login(self.request, user)
-            return super(LoginView, self).form_valid(form)
+            return super().form_valid(form)
 
 
 class KitchenView(TemplateView):
@@ -62,7 +62,7 @@ class KitchenView(TemplateView):
     template_name = "kitchen.html"
 
     def get_context_data(self, **kwargs):
-        context = super(KitchenView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         orders = Order.objects.all()
         context["orders"] = {
             "submitted": [

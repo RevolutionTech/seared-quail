@@ -47,7 +47,7 @@ class LoginForm(forms.Form):
     def clean(self):
         """ Verify that user with given credentials exists """
 
-        cleaned_data = super(LoginForm, self).clean()
+        cleaned_data = super().clean()
 
         if not self.errors:
             email_or_username = cleaned_data.get("username")

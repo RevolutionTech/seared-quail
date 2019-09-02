@@ -10,11 +10,11 @@ _connections = {}
 class KitchenNamespace(BaseNamespace, BroadcastMixin):
     def initialize(self, *args, **kwargs):
         _connections[id(self)] = self
-        super(KitchenNamespace, self).initialize(*args, **kwargs)
+        super().initialize(*args, **kwargs)
 
     def disconnect(self, *args, **kwargs):
         del _connections[id(self)]
-        super(KitchenNamespace, self).disconnect(*args, **kwargs)
+        super().disconnect(*args, **kwargs)
 
     def recv_disconnect(self):
         self.disconnect(silent=True)

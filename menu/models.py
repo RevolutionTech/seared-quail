@@ -25,7 +25,7 @@ class Category(OrderedModel):
 
     def clean(self):
         self.check_ancestor_of_self()
-        return super(Category, self).clean()
+        return super().clean()
 
     def check_ancestor_of_self(self):
         parent = self.parent
