@@ -220,7 +220,7 @@ description = "psycopg2 integration with coroutine libraries"
 name = "psycogreen"
 optional = false
 python-versions = "*"
-version = "1.0.1"
+version = "1.0.2"
 
 [[package]]
 category = "main"
@@ -310,7 +310,7 @@ python-versions = "*"
 version = "1.4.0"
 
 [metadata]
-content-hash = "78d4c2f970000a48dd317db15d08c5498f933fd1aaa4d7d6c90f4d84825492a5"
+content-hash = "b0b1e387b39417a86e172468f26c651bab1f23831a0e4af6d93523f1d083cbdf"
 python-versions = "^3.6"
 
 [metadata.files]
@@ -496,7 +496,7 @@ pillow = [
     {file = "Pillow-7.0.0.tar.gz", hash = "sha256:4d9ed9a64095e031435af120d3c910148067087541131e82b3e8db302f4c8946"},
 ]
 psycogreen = [
-    {file = "psycogreen-1.0.1.tar.gz", hash = "sha256:86fe2a066d99526b3cff74ca45fd265b5b412a570195488603e298266e91be17"},
+    {file = "psycogreen-1.0.2.tar.gz", hash = "sha256:c429845a8a49cf2f76b71265008760bcd7c7c77d80b806db4dc81116dbcd130d"},
 ]
 psycopg2 = [
     {file = "psycopg2-2.8.4-cp27-cp27m-win32.whl", hash = "sha256:72772181d9bad1fa349792a1e7384dde56742c14af2b9986013eb94a240f005b"},
