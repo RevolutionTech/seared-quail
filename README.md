@@ -12,8 +12,6 @@
 
 Seared Quail is an open-source digital restaurant menu web application. Below are instructions for setup and deployment for which you can create your own Seared Quail instance in a restaurant setting. Once your instance is deployed you can customize the menu in the Django admin interface for your restaurant. You are also welcome to fork the project and make changes specific to your use case as per the license provided in this project.
 
-Seared Quail is under active development. Follow my progress [on Trello](https://trello.com/b/6KWEejar).
-
 ## Setup
 
 ### Prerequisites
@@ -62,10 +60,10 @@ And in this file, generate a configuration similar to the following:
         access_log off;
 
         location /static/ordered_model/ {
-            alias /home/lucas/.virtualenvs/seared-quail/lib/python2.7/site-packages/ordered_model/static/ordered_model/;
+            alias /home/lucas/.virtualenvs/seared-quail/lib/python3.8/site-packages/ordered_model/static/ordered_model/;
         }
         location /static/admin/ {
-            alias /home/lucas/.virtualenvs/seared-quail/lib/python2.7/site-packages/django/contrib/admin/static/admin/;
+            alias /home/lucas/.virtualenvs/seared-quail/lib/python3.8/site-packages/django/contrib/admin/static/admin/;
         }
         location /static/ {
             alias /home/lucas/seared-quail/static/;
@@ -109,7 +107,7 @@ In this file, create a script similar to the following:
 
     #!/bin/sh
 
-    GUNICORN=/home/lucas/.cache/pypoetry/virtualenvs/seared-quail-py3.6/bin/gunicorn
+    GUNICORN=/home/lucas/.cache/pypoetry/virtualenvs/seared-quail-py3.8/bin/gunicorn
     ROOT=/home/lucas/seared-quail
     PID=/var/run/gunicorn.pid
 
