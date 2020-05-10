@@ -6,14 +6,14 @@
 
 import os
 
-from cbsettings import DjangoDefaults
+from configurations import Configuration, values
 
 
-class BaseSettings(DjangoDefaults):
+class BaseConfig(Configuration):
 
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-    SECRET_KEY = os.environ["SEARED_QUAIL_SECRET_KEY"]
+    SECRET_KEY = values.SecretValue(environ_prefix="SEARED_QUAIL")
     DEBUG = True
     ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
@@ -58,16 +58,23 @@ class BaseSettings(DjangoDefaults):
     WSGI_APPLICATION = "seared_quail.wsgi.application"
 
     # Database
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql_psycopg2",
-            "NAME": os.environ["SEARED_QUAIL_DB_NAME"],
-            "USER": os.environ["SEARED_QUAIL_DB_USER"],
-            "PASSWORD": os.environ["SEARED_QUAIL_DB_PASSWORD"],
-            "HOST": os.environ["SEARED_QUAIL_DB_HOST"],
-            "PORT": "5432",
+    DB_NAME = values.Value(environ_prefix="SEARED_QUAIL", environ_required=True)
+    DB_USER = values.Value(environ_prefix="SEARED_QUAIL", environ_required=True)
+    DB_PASSWORD = values.Value(environ_prefix="SEARED_QUAIL", environ_required=True)
+    DB_HOST = values.Value(environ_prefix="SEARED_QUAIL", environ_required=True)
+
+    @property
+    def DATABASES(self):
+        return {
+            "default": {
+                "ENGINE": "django.db.backends.postgresql_psycopg2",
+                "NAME": self.DB_NAME,
+                "USER": self.DB_USER,
+                "PASSWORD": self.DB_PASSWORD,
+                "HOST": self.DB_HOST,
+                "PORT": "5432",
+            }
         }
-    }
 
     # Internationalization
     TIME_ZONE = "UTC"
@@ -82,3 +89,8 @@ class BaseSettings(DjangoDefaults):
 
     # Authentication
     LOGIN_URL = "/login/"
+
+
+class ProdConfig(BaseConfig):
+
+    DEBUG = False
