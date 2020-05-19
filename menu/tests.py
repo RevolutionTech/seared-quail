@@ -6,7 +6,7 @@
 
 from menu.models import Category, MenuItem
 from restaurant.models import Table
-from seared_quail.tests import SearedQuailTestCase, MigrationTestCase
+from seared_quail.tests import MigrationTestCase, SearedQuailTestCase
 
 
 class MenuItemInitialOrdersMigrationTestCase(MigrationTestCase):

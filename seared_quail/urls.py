@@ -14,14 +14,13 @@ from socketio import sdjango
 
 from menu.views import MenuView
 from order.views import (
-    redirect_authenticated,
-    LoginView,
-    logout,
     KitchenView,
-    update_orders,
+    LoginView,
     complete_order,
+    logout,
+    redirect_authenticated,
+    update_orders,
 )
-
 
 sdjango.autodiscover()
 

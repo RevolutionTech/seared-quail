@@ -8,5 +8,4 @@ from django.contrib import admin
 
 from restaurant.models import Table
 
-
 admin.site.register(Table)

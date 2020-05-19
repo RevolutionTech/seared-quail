@@ -1,7 +1,6 @@
-from socketio.namespace import BaseNamespace
 from socketio.mixins import BroadcastMixin
+from socketio.namespace import BaseNamespace
 from socketio.sdjango import namespace
-
 
 _connections = {}
 

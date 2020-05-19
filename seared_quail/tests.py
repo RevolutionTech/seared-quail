@@ -9,7 +9,6 @@ from django.contrib.auth.models import User
 from django.db import connection
 from django.db.migrations.executor import MigrationExecutor
 from django.test import TransactionTestCase
-
 from pigeon.test import RenderTestCase
 
 from menu.models import Category, MenuItem
