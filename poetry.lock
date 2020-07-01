@@ -129,11 +129,11 @@ description = "Coroutine-based network library"
 name = "gevent"
 optional = false
 python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*"
-version = "20.5.2"
+version = "20.6.2"
 
 [package.dependencies]
 cffi = ">=1.12.2"
-greenlet = ">=0.4.14"
+greenlet = ">=0.4.16"
 setuptools = "*"
 "zope.event" = "*"
 "zope.interface" = "*"
@@ -141,9 +141,9 @@ setuptools = "*"
 [package.extras]
 dnspython = ["dnspython (>=1.16.0)", "idna"]
 docs = ["repoze.sphinx.autointerface", "sphinxcontrib-programoutput"]
-monitor = ["psutil (>=5.6.1)", "psutil (5.6.3)"]
-recommended = ["dnspython (>=1.16.0)", "idna", "cffi (>=1.12.2)", "psutil (>=5.6.1)", "psutil (5.6.3)"]
-test = ["dnspython (>=1.16.0)", "idna", "requests", "objgraph", "cffi (>=1.12.2)", "psutil (>=5.6.1)", "psutil (5.6.3)", "futures", "mock", "contextvars (2.4)", "coverage (<5.0)", "coveralls (>=1.7.0)"]
+monitor = ["psutil (>=5.7.0)"]
+recommended = ["dnspython (>=1.16.0)", "idna", "cffi (>=1.12.2)", "selectors2", "backports.socketpair", "psutil (>=5.7.0)"]
+test = ["dnspython (>=1.16.0)", "idna", "requests", "objgraph", "cffi (>=1.12.2)", "selectors2", "futures", "mock", "backports.socketpair", "contextvars (2.4)", "coverage (<5.0)", "coveralls (>=1.7.0)", "psutil (>=5.7.0)"]
 
 [[package]]
 category = "main"
@@ -181,7 +181,7 @@ marker = "platform_python_implementation == \"CPython\""
 name = "greenlet"
 optional = false
 python-versions = "*"
-version = "0.4.15"
+version = "0.4.16"
 
 [[package]]
 category = "main"
@@ -357,7 +357,7 @@ test = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 
 [metadata]
-content-hash = "bcc2fea443a7292422a3f381a15023a621577f8b7b8edf40648d4f49badb209f"
+content-hash = "c9654542ad8b7740a7b3d3078370bec9e37637b52d9db2143afaee9b1f1d32b9"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -456,28 +456,34 @@ django-pigeon = [
     {file = "django-pigeon-0.3.0.tar.gz", hash = "sha256:ae7433109d944a2236223b4f61baf8e19043fea35c0a949e1edd1fb79cc94b18"},
 ]
 gevent = [
-    {file = "gevent-20.5.2-cp27-cp27m-macosx_10_15_x86_64.whl", hash = "sha256:4a69373a07a0d4ff74401274d3b30aa47430e76d7e314f23bb9f399da1bbed6e"},
-    {file = "gevent-20.5.2-cp27-cp27m-manylinux2010_x86_64.whl", hash = "sha256:a55ee5c388511362b1f886be57f06062334bc44b91ef215b997435d21901def7"},
-    {file = "gevent-20.5.2-cp27-cp27m-win32.whl", hash = "sha256:2436dfbc1f0cfa2c2fc8ec9e824dcc13f8501085c29605b4488c981456f12ed6"},
-    {file = "gevent-20.5.2-cp27-cp27m-win_amd64.whl", hash = "sha256:c2c2e0e275b375941be80a174cd47b3ee20ccf457fbec31863808448ec4fcf59"},
-    {file = "gevent-20.5.2-cp27-cp27mu-manylinux2010_x86_64.whl", hash = "sha256:1bb8330f1f86460b845b589eeea73b3e2dd52f84bee30178a8eaa0ddd61622a6"},
-    {file = "gevent-20.5.2-cp35-cp35m-manylinux2010_x86_64.whl", hash = "sha256:2863c2899f0a379322cb07724c67eb608652e99ab5bdf5bfce936c9bf89f4a87"},
-    {file = "gevent-20.5.2-cp35-cp35m-win32.whl", hash = "sha256:de44cb7bf1f74043e7976f2dbf9780da7a99a2b58799675817d1df77ccfde519"},
-    {file = "gevent-20.5.2-cp35-cp35m-win_amd64.whl", hash = "sha256:9cec7379b540cd7a8cdffec9ebe799943c07d0f575e6f222bf3515e7655544d7"},
-    {file = "gevent-20.5.2-cp36-cp36m-macosx_10_15_x86_64.whl", hash = "sha256:9c4601f67f26e534237d1cbaded3157b2a70a89e7760c819e8afb20e32878553"},
-    {file = "gevent-20.5.2-cp36-cp36m-manylinux2010_x86_64.whl", hash = "sha256:f2932f05b8cfef3d7c285ddbd77008d642bd843c88625e1da4e96a643d4de885"},
-    {file = "gevent-20.5.2-cp36-cp36m-win32.whl", hash = "sha256:08de7d46923ab04529e70ff0601522bc7897b7bcef8ac40e8a9f906168518875"},
-    {file = "gevent-20.5.2-cp36-cp36m-win_amd64.whl", hash = "sha256:ae6787acd68bd2f8d40e10fd8d031a5da2ac9dae6ddd35390cf4c18261a8bd38"},
-    {file = "gevent-20.5.2-cp37-cp37m-macosx_10_15_x86_64.whl", hash = "sha256:12276c30ce4d6da84eba674dade04b0cd80fb5808dbfdef01ba49b75d50b3816"},
-    {file = "gevent-20.5.2-cp37-cp37m-manylinux2010_x86_64.whl", hash = "sha256:4a3ee667456ccec0c1d215aeec8d150449d0a6da5d58ba2c6be741249af1f139"},
-    {file = "gevent-20.5.2-cp37-cp37m-win32.whl", hash = "sha256:2f138b82527c520fff432e3aa9f606335d23eebfa1e8aeb0e36822e34a91afdd"},
-    {file = "gevent-20.5.2-cp37-cp37m-win_amd64.whl", hash = "sha256:899e1cdbfaa7aa0d53a430f2f4cb8d03c00db0ee94872ce2b4bb918817a719f0"},
-    {file = "gevent-20.5.2-cp38-cp38-macosx_10_15_x86_64.whl", hash = "sha256:bd261c12724e3e4be81ce4bd978c3ba47d31bd56444ba9f30332b8e7d4f09b81"},
-    {file = "gevent-20.5.2-cp38-cp38-manylinux2010_x86_64.whl", hash = "sha256:1886197bcf8aea097c066e212c32a0aed9ad6a0ed245c124f3ff6b7dce7db354"},
-    {file = "gevent-20.5.2-cp38-cp38-win32.whl", hash = "sha256:9146860dd8ac0d0b675abc64025ea8dcd3d399de9290a8eec23bbed6d3993be4"},
-    {file = "gevent-20.5.2-cp38-cp38-win_amd64.whl", hash = "sha256:67820fd68ba14a38a1645261fc8f3530c4cfad6c45e29f40cc1dda8d5dcc17fb"},
-    {file = "gevent-20.5.2-pp27-pypy_73-win32.whl", hash = "sha256:91bfe6c3a2ec4d0027b30eb1aa678ab1f828c7d8961e64ac000d8c4a80fc8806"},
-    {file = "gevent-20.5.2.tar.gz", hash = "sha256:2756de36f56b33c46f6cc7146a74ba65afcd1471922c95b6771ce87b279d689c"},
+    {file = "gevent-20.6.2-cp27-cp27m-macosx_10_15_x86_64.whl", hash = "sha256:b03890bbddbae5667f5baad517417056496ff5e92c3c7945b27cc08f55a9fcb2"},
+    {file = "gevent-20.6.2-cp27-cp27m-macosx_10_9_x86_64.whl", hash = "sha256:1ea0d34cb78cdf37870be3bfb9330ebda89197bed9e048c14f4a90dec19a33e0"},
+    {file = "gevent-20.6.2-cp27-cp27m-manylinux2010_x86_64.whl", hash = "sha256:73eb4cf3114fbb5dd801bd0b93941adfa2fa6d99e91976c20a121ea14b8b39b9"},
+    {file = "gevent-20.6.2-cp27-cp27m-win32.whl", hash = "sha256:f41cc8e853ac2252bc58f6feabd74b8aae613e2d19097c5373463122f4dc08f0"},
+    {file = "gevent-20.6.2-cp27-cp27m-win_amd64.whl", hash = "sha256:d3baff87d935a5eeffb0e4f7cd5ffe258d2430cd62aeee2e5396f85da07df435"},
+    {file = "gevent-20.6.2-cp27-cp27mu-manylinux2010_x86_64.whl", hash = "sha256:7d8408854ce892f987305a0e9bf5c051f4ea29453665454396d6afb620c719b6"},
+    {file = "gevent-20.6.2-cp35-cp35m-manylinux2010_x86_64.whl", hash = "sha256:ea2e4584950186b71d648bde6af40dae4d4c6f43db25a732ec056b27a7a83afe"},
+    {file = "gevent-20.6.2-cp35-cp35m-win32.whl", hash = "sha256:c0f4340e40e0f9dfe93a52a12ddf5b1eeda9bbc89b99bf3b9b23acab0dfae0a4"},
+    {file = "gevent-20.6.2-cp35-cp35m-win_amd64.whl", hash = "sha256:13c74d6784ef5ada2666abf2bb310d27a1d14291f7cac46148f336b19f714d40"},
+    {file = "gevent-20.6.2-cp36-cp36m-macosx_10_15_x86_64.whl", hash = "sha256:78bd94f6f2ac366155169df3507068f6381f2ad77625633189ce183f86a57597"},
+    {file = "gevent-20.6.2-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:0b16dd85eddaf6acdad373ce90ed4da09ef466cbc5e0ee5932d13f099929e844"},
+    {file = "gevent-20.6.2-cp36-cp36m-manylinux2010_x86_64.whl", hash = "sha256:a47556cac07e31b3cef8fd701599b3b1365961fe3736471f41807ffa27c5c848"},
+    {file = "gevent-20.6.2-cp36-cp36m-win32.whl", hash = "sha256:bef18b8bd3b728240b9bbd699737216b793d6c97b482431f69dcbe328ad73692"},
+    {file = "gevent-20.6.2-cp36-cp36m-win_amd64.whl", hash = "sha256:d0a67a20ce325f6a2068e0bd9fbf83db8a5f5ced972ed8ac5c20079a7d98c7d1"},
+    {file = "gevent-20.6.2-cp37-cp37m-macosx_10_15_x86_64.whl", hash = "sha256:b17915b65b49a425115ddc3087484c81b1e47ce38c931d18bb14e453753e4d06"},
+    {file = "gevent-20.6.2-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:ebb8a545112110e3a6edf905ae1556b0538fc148c743aa7d8cfaebbbc23de31d"},
+    {file = "gevent-20.6.2-cp37-cp37m-manylinux2010_x86_64.whl", hash = "sha256:6c864b5604166ac8351e3128a1135b883b9e978fd24afbd75a249dcb42bc8ab5"},
+    {file = "gevent-20.6.2-cp37-cp37m-win32.whl", hash = "sha256:e5ca5ee80a9d9e697c9fc22b4bbce9ad06870f83fc8e7774e5504892ef702476"},
+    {file = "gevent-20.6.2-cp37-cp37m-win_amd64.whl", hash = "sha256:f2a02d9004ccb18edd9eaf6f25da9a7763de41a69754d5e4d872a8cbf8bd0b72"},
+    {file = "gevent-20.6.2-cp38-cp38-macosx_10_15_x86_64.whl", hash = "sha256:354f932c284fa45826b32f42927d892096cce05671b50b3ff59528230217ad47"},
+    {file = "gevent-20.6.2-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:67776cb33b638a3c61a0351d9d1e8f33a46b47de619e249de1159892f9ff035c"},
+    {file = "gevent-20.6.2-cp38-cp38-manylinux2010_x86_64.whl", hash = "sha256:68764aca061bbbbade43727e797f9c28042f6d90cca5fb6514ef726d43ab00ca"},
+    {file = "gevent-20.6.2-cp38-cp38-win32.whl", hash = "sha256:0f3fbb1703b10609856e5dffb0e358bf5edf57e52dc7cd7226e3f8674fdc0a0f"},
+    {file = "gevent-20.6.2-cp38-cp38-win_amd64.whl", hash = "sha256:a18d8dd9bfa994a22f30adfa0563d80f0809140045c34f85535f422813d25855"},
+    {file = "gevent-20.6.2-cp39-cp39-manylinux2010_x86_64.whl", hash = "sha256:9527087984f1659be899b3300d5d61c7c5b01d8beae106aff5160316da8bc56f"},
+    {file = "gevent-20.6.2-pp27-pypy_73-macosx_10_7_x86_64.whl", hash = "sha256:76ef4c6e3332e6f7278142d791b28695adfce39735900fccef2a0f1d894f6b36"},
+    {file = "gevent-20.6.2-pp27-pypy_73-win32.whl", hash = "sha256:3cb2f6978615d52e4e4e667b035c11a7272bb68b14d119faf1b138164b2f354f"},
+    {file = "gevent-20.6.2.tar.gz", hash = "sha256:a23c2abf08e851c988723f6a2996d495f513a2c0dc70f9956af03af8debdb5d1"},
 ]
 gevent-socketio = []
 gevent-websocket = [
@@ -485,28 +491,23 @@ gevent-websocket = [
     {file = "gevent_websocket-0.10.1-py3-none-any.whl", hash = "sha256:17b67d91282f8f4c973eba0551183fc84f56f1c90c8f6b6b30256f31f66f5242"},
 ]
 greenlet = [
-    {file = "greenlet-0.4.15-cp27-cp27m-manylinux1_x86_64.whl", hash = "sha256:99a26afdb82ea83a265137a398f570402aa1f2b5dfb4ac3300c026931817b163"},
-    {file = "greenlet-0.4.15-cp27-cp27m-win32.whl", hash = "sha256:beeabe25c3b704f7d56b573f7d2ff88fc99f0138e43480cecdfcaa3b87fe4f87"},
-    {file = "greenlet-0.4.15-cp27-cp27m-win_amd64.whl", hash = "sha256:9854f612e1b59ec66804931df5add3b2d5ef0067748ea29dc60f0efdcda9a638"},
-    {file = "greenlet-0.4.15-cp27-cp27mu-manylinux1_x86_64.whl", hash = "sha256:ac57fcdcfb0b73bb3203b58a14501abb7e5ff9ea5e2edfa06bb03035f0cff248"},
-    {file = "greenlet-0.4.15-cp33-cp33m-win32.whl", hash = "sha256:d634a7ea1fc3380ff96f9e44d8d22f38418c1c381d5fac680b272d7d90883720"},
-    {file = "greenlet-0.4.15-cp33-cp33m-win_amd64.whl", hash = "sha256:0d48200bc50cbf498716712129eef819b1729339e34c3ae71656964dac907c28"},
-    {file = "greenlet-0.4.15-cp34-cp34m-manylinux1_x86_64.whl", hash = "sha256:bcb530089ff24f6458a81ac3fa699e8c00194208a724b644ecc68422e1111939"},
-    {file = "greenlet-0.4.15-cp34-cp34m-win32.whl", hash = "sha256:8b4572c334593d449113f9dc8d19b93b7b271bdbe90ba7509eb178923327b625"},
-    {file = "greenlet-0.4.15-cp34-cp34m-win_amd64.whl", hash = "sha256:a9f145660588187ff835c55a7d2ddf6abfc570c2651c276d3d4be8a2766db490"},
-    {file = "greenlet-0.4.15-cp35-cp35m-manylinux1_x86_64.whl", hash = "sha256:51503524dd6f152ab4ad1fbd168fc6c30b5795e8c70be4410a64940b3abb55c0"},
-    {file = "greenlet-0.4.15-cp35-cp35m-win32.whl", hash = "sha256:a19bf883b3384957e4a4a13e6bd1ae3d85ae87f4beb5957e35b0be287f12f4e4"},
-    {file = "greenlet-0.4.15-cp35-cp35m-win_amd64.whl", hash = "sha256:853da4f9563d982e4121fed8c92eea1a4594a2299037b3034c3c898cb8e933d6"},
-    {file = "greenlet-0.4.15-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:23d12eacffa9d0f290c0fe0c4e81ba6d5f3a5b7ac3c30a5eaf0126bf4deda5c8"},
-    {file = "greenlet-0.4.15-cp36-cp36m-win32.whl", hash = "sha256:000546ad01e6389e98626c1367be58efa613fa82a1be98b0c6fc24b563acc6d0"},
-    {file = "greenlet-0.4.15-cp36-cp36m-win_amd64.whl", hash = "sha256:d97b0661e1aead761f0ded3b769044bb00ed5d33e1ec865e891a8b128bf7c656"},
-    {file = "greenlet-0.4.15-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:8041e2de00e745c0e05a502d6e6db310db7faa7c979b3a5877123548a4c0b214"},
-    {file = "greenlet-0.4.15-cp37-cp37m-win32.whl", hash = "sha256:81fcd96a275209ef117e9ec91f75c731fa18dcfd9ffaa1c0adbdaa3616a86043"},
-    {file = "greenlet-0.4.15-cp37-cp37m-win_amd64.whl", hash = "sha256:37c9ba82bd82eb6a23c2e5acc03055c0e45697253b2393c9a50cef76a3985304"},
-    {file = "greenlet-0.4.15-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:e538b8dae561080b542b0f5af64d47ef859f22517f7eca617bb314e0e03fd7ef"},
-    {file = "greenlet-0.4.15-cp38-cp38-win32.whl", hash = "sha256:51155342eb4d6058a0ffcd98a798fe6ba21195517da97e15fca3db12ab201e6e"},
-    {file = "greenlet-0.4.15-cp38-cp38-win_amd64.whl", hash = "sha256:7457d685158522df483196b16ec648b28f8e847861adb01a55d41134e7734122"},
-    {file = "greenlet-0.4.15.tar.gz", hash = "sha256:9416443e219356e3c31f1f918a91badf2e37acf297e2fa13d24d1cc2380f8fbc"},
+    {file = "greenlet-0.4.16-cp27-cp27m-manylinux1_x86_64.whl", hash = "sha256:80cb0380838bf4e48da6adedb0c7cd060c187bb4a75f67a5aa9ec33689b84872"},
+    {file = "greenlet-0.4.16-cp27-cp27m-win32.whl", hash = "sha256:df7de669cbf21de4b04a3ffc9920bc8426cab4c61365fa84d79bf97401a8bef7"},
+    {file = "greenlet-0.4.16-cp27-cp27m-win_amd64.whl", hash = "sha256:1429dc183b36ec972055e13250d96e174491559433eb3061691b446899b87384"},
+    {file = "greenlet-0.4.16-cp27-cp27mu-manylinux1_x86_64.whl", hash = "sha256:5ea034d040e6ab1d2ae04ab05a3f37dbd719c4dee3804b13903d4cc794b1336e"},
+    {file = "greenlet-0.4.16-cp35-cp35m-manylinux1_x86_64.whl", hash = "sha256:c196a5394c56352e21cb7224739c6dd0075b69dd56f758505951d1d8d68cf8a9"},
+    {file = "greenlet-0.4.16-cp35-cp35m-win32.whl", hash = "sha256:1000038ba0ea9032948e2156a9c15f5686f36945e8f9906e6b8db49f358e7b52"},
+    {file = "greenlet-0.4.16-cp35-cp35m-win_amd64.whl", hash = "sha256:1b805231bfb7b2900a16638c3c8b45c694334c811f84463e52451e00c9412691"},
+    {file = "greenlet-0.4.16-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:e5db19d4a7d41bbeb3dd89b49fc1bc7e6e515b51bbf32589c618655a0ebe0bf0"},
+    {file = "greenlet-0.4.16-cp36-cp36m-win32.whl", hash = "sha256:eac2a3f659d5f41d6bbfb6a97733bc7800ea5e906dc873732e00cebb98cec9e4"},
+    {file = "greenlet-0.4.16-cp36-cp36m-win_amd64.whl", hash = "sha256:7eed31f4efc8356e200568ba05ad645525f1fbd8674f1e5be61a493e715e3873"},
+    {file = "greenlet-0.4.16-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:682328aa576ec393c1872615bcb877cf32d800d4a2f150e1a5dc7e56644010b1"},
+    {file = "greenlet-0.4.16-cp37-cp37m-win32.whl", hash = "sha256:3a35e33902b2e6079949feed7a2dafa5ac6f019da97bd255842bb22de3c11bf5"},
+    {file = "greenlet-0.4.16-cp37-cp37m-win_amd64.whl", hash = "sha256:b0b2a984bbfc543d144d88caad6cc7ff4a71be77102014bd617bd88cfb038727"},
+    {file = "greenlet-0.4.16-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:d83c1d38658b0f81c282b41238092ed89d8f93c6e342224ab73fb39e16848721"},
+    {file = "greenlet-0.4.16-cp38-cp38-win32.whl", hash = "sha256:e695ac8c3efe124d998230b219eb51afb6ef10524a50b3c45109c4b77a8a3a92"},
+    {file = "greenlet-0.4.16-cp38-cp38-win_amd64.whl", hash = "sha256:133ba06bad4e5f2f8bf6a0ac434e0fd686df749a86b3478903b92ec3a9c0c90b"},
+    {file = "greenlet-0.4.16.tar.gz", hash = "sha256:6e06eac722676797e8fce4adb8ad3dc57a1bb3adfb0dd3fdf8306c055a38456c"},
 ]
 gunicorn = [
     {file = "gunicorn-20.0.4-py2.py3-none-any.whl", hash = "sha256:cd4a810dd51bf497552cf3f863b575dabd73d6ad6a91075b65936b151cbf4f9c"},
