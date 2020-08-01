@@ -19,7 +19,7 @@ python-dotenv = "^0.13.0"
 django-configurations = "^2.2"
 
 [tool.poetry.dev-dependencies]
-coverage = "^5.1"
+coverage = "^5.2"
 django-pigeon = "^0.3.0"
 black = "^19.10b0"
 pyupgrade = "^2.6"
