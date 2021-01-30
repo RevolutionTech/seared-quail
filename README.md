@@ -1,12 +1,11 @@
 # Seared Quail
+#### A web application for digital restaurant menus
 
 [![Build Status](https://travis-ci.org/RevolutionTech/seared-quail.svg?branch=master)](https://travis-ci.org/RevolutionTech/seared-quail)
 [![codecov](https://codecov.io/gh/RevolutionTech/seared-quail/branch/master/graph/badge.svg)](https://codecov.io/gh/RevolutionTech/seared-quail)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/bf08621ec3d54837b3d64f8e880f6d9e)](https://www.codacy.com/app/RevolutionTech/seared-quail)
 
 ![Seared Quail](https://revolutiontech.s3.amazonaws.com/media/img/searedquail1.png)
-
-***
 
 ## About
 
@@ -30,7 +29,7 @@ Seared Quail reads in environment variables from your local `.env` file. See `.e
 
 With everything installed and all files in place, you may now create the database tables. You can do this with:
 
-    poetry run python manage.py migrate
+    poetry run ./manage.py migrate
 
 ### Deployment
 
