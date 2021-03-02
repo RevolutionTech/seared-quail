@@ -215,16 +215,16 @@ python-versions = "*"
 
 [[package]]
 name = "opstrich"
-version = "0.2.0"
+version = "0.3.1"
 description = "DevOps tooling, various scripts, etc."
 category = "dev"
 optional = false
-python-versions = ">=3.8,<4.0"
+python-versions = ">=3.6.1,<4.0.0"
 
 [package.dependencies]
 black = ">=20.8b1,<21.0"
 invoke = ">=1.4.1,<2.0.0"
-isort = ">=5.6.4,<6.0.0"
+isort = ">=5.0,<6.0"
 pyupgrade = ">=2.7.4,<3.0.0"
 
 [[package]]
@@ -373,7 +373,7 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "76136398f4b627b980f616518cfece564aeba5b366a15e4830b0019c5067c747"
+content-hash = "4efdabd0e53bf07468d05c699a5a74b7e1394cee890e06de59177480a5f06938"
 
 [metadata.files]
 appdirs = [
@@ -559,8 +559,8 @@ mypy-extensions = [
     {file = "mypy_extensions-0.4.3.tar.gz", hash = "sha256:2d82818f5bb3e369420cb3c4060a7970edba416647068eb4c5343488a6c604a8"},
 ]
 opstrich = [
-    {file = "opstrich-0.2.0-py3-none-any.whl", hash = "sha256:2fea2652c0713a57127919c14c36f5cf8572cd27d2d48a7d8b5107eb40b5e171"},
-    {file = "opstrich-0.2.0.tar.gz", hash = "sha256:80e1d775a140ce629cfb73a1dc734f58a9bb9559eb4cf93e7a834b5df0dbdb52"},
+    {file = "opstrich-0.3.1-py3-none-any.whl", hash = "sha256:f470ad67d71c98a5cadc2cd386bae1dad83c8641213dcc5cb1135e554701e0e9"},
+    {file = "opstrich-0.3.1.tar.gz", hash = "sha256:bb69509904be818e4096dc7f841b052e9920dd73c4e0e218eb83624ee16491be"},
 ]
 pathspec = [
     {file = "pathspec-0.6.0.tar.gz", hash = "sha256:e285ccc8b0785beadd4c18e5708b12bb8fcf529a1e61215b3feff1d1e559ea5c"},

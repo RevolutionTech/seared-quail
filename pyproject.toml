@@ -21,7 +21,7 @@ django-configurations = "^2.2"
 [tool.poetry.dev-dependencies]
 coverage = "^5.5"
 django-pigeon = "^0.3.0"
-opstrich = "^0.2.0"
+opstrich = "^0.3.1"
 
 [tool.isort]
 profile = "black"
