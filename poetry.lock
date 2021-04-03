@@ -60,7 +60,7 @@ toml = ["toml"]
 
 [[package]]
 name = "django"
-version = "2.1.15"
+version = "2.2.18"
 description = "A high-level Python Web framework that encourages rapid development and clean, pragmatic design."
 category = "main"
 optional = false
@@ -68,6 +68,7 @@ python-versions = ">=3.5"
 
 [package.dependencies]
 pytz = "*"
+sqlparse = ">=0.2.2"
 
 [package.extras]
 argon2 = ["argon2-cffi (>=16.1.0)"]
@@ -314,6 +315,14 @@ optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*"
 
 [[package]]
+name = "sqlparse"
+version = "0.4.1"
+description = "A non-validating SQL parser."
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[[package]]
 name = "tokenize-rt"
 version = "3.2.0"
 description = "A wrapper around the stdlib `tokenize` which roundtrips."
@@ -373,7 +382,7 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "cac138ecbfbfb08d0b8aacf16a3e74ab10be6e325f80dfc1a2a06d353d1067ee"
+content-hash = "bfe1305686484aeba66c9224d2195db6d8b2a70c9e5896caed73f334ae73f52b"
 
 [metadata.files]
 appdirs = [
@@ -472,8 +481,8 @@ coverage = [
     {file = "coverage-5.5.tar.gz", hash = "sha256:ebe78fe9a0e874362175b02371bdfbee64d8edc42a044253ddf4ee7d3c15212c"},
 ]
 django = [
-    {file = "Django-2.1.15-py3-none-any.whl", hash = "sha256:48522428f4a285cf265af969f4744c5ebb027c7f41958ba48b639ace2068ffe7"},
-    {file = "Django-2.1.15.tar.gz", hash = "sha256:a794f7a2f4b7c928eecfbc4ebad03712ff27fb545abe269bf01aa8500781eb1c"},
+    {file = "Django-2.2.18-py3-none-any.whl", hash = "sha256:0eaca08f236bf502a9773e53623f766cc3ceee6453cc41e6de1c8b80f07d2364"},
+    {file = "Django-2.2.18.tar.gz", hash = "sha256:c9c994f5e0a032cbd45089798b52e4080f4dea7241c58e3e0636c54146480bb4"},
 ]
 django-configurations = [
     {file = "django-configurations-2.2.tar.gz", hash = "sha256:9e3bcea1355ac50a4c9f854f751d214cb17e5f8adf18405a4488d0a1e8945915"},
@@ -660,6 +669,10 @@ regex = [
 six = [
     {file = "six-1.12.0-py2.py3-none-any.whl", hash = "sha256:3350809f0555b11f552448330d0b52d5f24c91a322ea4a15ef22629740f3761c"},
     {file = "six-1.12.0.tar.gz", hash = "sha256:d16a0141ec1a18405cd4ce8b4613101da75da0e9a7aec5bdd4fa804d0e0eba73"},
+]
+sqlparse = [
+    {file = "sqlparse-0.4.1-py3-none-any.whl", hash = "sha256:017cde379adbd6a1f15a61873f43e8274179378e95ef3fede90b5aa64d304ed0"},
+    {file = "sqlparse-0.4.1.tar.gz", hash = "sha256:0f91fd2e829c44362cbcfab3e9ae12e22badaa8a29ad5ff599f9ec109f0454e8"},
 ]
 tokenize-rt = [
     {file = "tokenize_rt-3.2.0-py2.py3-none-any.whl", hash = "sha256:53f5c22d36e5c6f8e3fdbc6cb4dd151d1b3d38cea1b85b5fef6268f153733899"},
