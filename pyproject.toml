@@ -15,7 +15,7 @@ psycogreen = "^1.0.2"
 Pillow = "^8.3.2"
 django-ordered-model = "^3.4.3"
 gevent-socketio = {git = "https://github.com/abourget/gevent-socketio.git", rev = "1cdb1594a315326987a17ce0924ea448a82fab01"}
-python-dotenv = "^0.19.0"
+python-dotenv = "^0.19.1"
 django-configurations = "^2.2"
 
 [tool.poetry.dev-dependencies]
