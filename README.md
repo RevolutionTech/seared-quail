@@ -2,7 +2,7 @@
 #### A web application for digital restaurant menus
 
 ![CI](https://github.com/RevolutionTech/seared-quail/actions/workflows/ci.yml/badge.svg)
-[![codecov](https://codecov.io/gh/RevolutionTech/seared-quail/branch/master/graph/badge.svg)](https://codecov.io/gh/RevolutionTech/seared-quail)
+[![codecov](https://codecov.io/gh/RevolutionTech/seared-quail/branch/main/graph/badge.svg)](https://codecov.io/gh/RevolutionTech/seared-quail)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/bf08621ec3d54837b3d64f8e880f6d9e)](https://www.codacy.com/app/RevolutionTech/seared-quail)
 
 ![Seared Quail](https://revolutiontech.s3.amazonaws.com/media/img/searedquail1.png)
